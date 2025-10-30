@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ChevronLeft, ChevronRight, Shield, Users, Star, Lock } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Star, Waves, Coffee, Car, Wifi, Utensils } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Button from './ui/Button';
 
@@ -9,36 +9,36 @@ const HeroCarousel = () => {
   const slides = [
     {
       id: 1,
-      title: "Sistema de Usuários",
-      subtitle: "Gerencie usuários de forma eficiente e segura",
-      description: "Plataforma completa para gestão de usuários com interface moderna e recursos avançados de segurança.",
-      image: "bg-gradient-to-br from-primary-600 via-primary-700 to-primary-800",
-      icon: Shield,
-      features: ["Segurança Avançada", "Interface Moderna", "Gestão Completa"],
-      cta: "Começar Agora",
-      link: "/register"
+      title: "Hotel Hemera",
+      subtitle: "Luxo e Conforto em Cada Detalhe",
+      description: "Descubra uma experiência única de hospitalidade com nossos quartos elegantes, serviços premium e localização privilegiada no coração da cidade.",
+      image: "bg-gradient-to-br from-amber-600 via-amber-700 to-amber-800",
+      icon: Star,
+      features: ["Wi-Fi Grátis", "Estacionamento", "Piscina", "Restaurante"],
+      cta: "Reservar Agora",
+      link: "/rooms"
     },
     {
       id: 2,
-      title: "Controle Total",
-      subtitle: "Tenha controle completo sobre seus usuários",
-      description: "Visualize, edite e gerencie todos os usuários do sistema com ferramentas profissionais.",
-      image: "bg-gradient-to-br from-green-600 via-green-700 to-green-800",
-      icon: Users,
-      features: ["Dashboard Completo", "Relatórios Detalhados", "Filtros Avançados"],
-      cta: "Acessar Dashboard",
-      link: "/dashboard"
+      title: "Suítes Presidenciais",
+      subtitle: "O Máximo em Sofisticação",
+      description: "Experimente o luxo absoluto em nossas suítes presidenciais com vista panorâmica, serviço de mordomo e todas as comodidades que você merece.",
+      image: "bg-gradient-to-br from-purple-600 via-purple-700 to-purple-800",
+      icon: Waves,
+      features: ["Vista Panorâmica", "Serviço de Mordomo", "Terraço Privativo", "Chef Particular"],
+      cta: "Ver Suítes",
+      link: "/suites"
     },
     {
       id: 3,
-      title: "Segurança Garantida",
-      subtitle: "Proteção máxima para seus dados",
-      description: "Sistema de autenticação robusto com criptografia de ponta e controles de acesso.",
-      image: "bg-gradient-to-br from-purple-600 via-purple-700 to-purple-800",
-      icon: Lock,
-      features: ["Autenticação JWT", "Criptografia", "Controle de Acesso"],
-      cta: "Saiba Mais",
-      link: "/login"
+      title: "Experiência Premium",
+      subtitle: "Serviços Exclusivos para Você",
+      description: "Desfrute de nossos serviços premium incluindo spa, academia, restaurante gourmet e concierge 24h para tornar sua estadia inesquecível.",
+      image: "bg-gradient-to-br from-emerald-600 via-emerald-700 to-emerald-800",
+      icon: Coffee,
+      features: ["Spa & Wellness", "Academia", "Restaurante Gourmet", "Concierge 24h"],
+      cta: "Conhecer Serviços",
+      link: "/services"
     }
   ];
 
