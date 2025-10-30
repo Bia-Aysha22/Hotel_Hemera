@@ -1,4 +1,5 @@
 Backend/.env
+Frontend/.env
 
 # Environment variables
 .env
@@ -9,9 +10,37 @@ Backend/.env
 
 # Dependencies
 node_modules/
+Backend/node_modules/
+Frontend/node_modules/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# Build outputs
+Backend/dist/
+Frontend/dist/
+Frontend/build/
+
+# Package manager files
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Temporary files
+*.tmp
+*.temp
+
+# Database files
+*.db
+*.sqlite
+*.sqlite3
 
 # Runtime data
 pids

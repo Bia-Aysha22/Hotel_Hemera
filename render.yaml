@@ -1,0 +1,23 @@
+services:
+  # Backend (Node)
+  - type: web
+    name: hotel_hemera_backend
+    env: node
+    rootDir: ./Backend
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+    autoDeploy: true
+
+  # Frontend (React, Vue, etc.)
+  - type: static
+    name: hotel_hemera_frontend
+    rootDir: ./Frontend
+    buildCommand: npm run build
+    publishPath: build
+    envVars:
+      - key: NODE_ENV
+        value: production
+    autoDeploy: true
