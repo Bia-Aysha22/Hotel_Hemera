@@ -3,520 +3,602 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Resort & Spa de Luxo - Carrossel e Autenticação</title>
-    <!-- Carrega o Tailwind CSS para estilização moderna e responsiva -->
+    <title>Hotel Hemera - Luz e Luxo em Cada Experiência</title>
+    
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Define a fonte Inter, conforme padrão -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
     <style>
-        /* Estilos customizados para o scroll e a fonte */
+        /* Paleta de cores Hemera - Deusa da Luz */
         :root {
-            --primary-color: #4f46e5; /* indigo-600 */
+            --hemera-blue: #1e3a8a;      /* Azul profundo - céu grego */
+            --hemera-light-blue: #3b82f6; /* Azul claro - luz do dia */
+            --hemera-gold: #fbbf24;      /* Dourado claro - luz solar */
+            --hemera-light-gold: #fde68a; /* Dourado claro - aurora */
+            --hemera-white: #fefefe;     /* Branco puro - luz */
+            --hemera-cream: #fef7ed;     /* Creme - areia das praias gregas */
+            --hemera-gray: #64748b;       /* Cinza - sombras suaves */
         }
-        .font-inter {
+        
+        .font-display {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .font-body {
             font-family: 'Inter', sans-serif;
         }
-        /* Esconder a barra de scroll horizontal mas permitir o scroll */
+        
+        /* Gradientes inspirados na aurora */
+        .aurora-gradient {
+            background: linear-gradient(135deg, var(--hemera-blue) 0%, var(--hemera-light-blue) 50%, var(--hemera-gold) 100%);
+        }
+        
+        .light-gradient {
+            background: linear-gradient(135deg, var(--hemera-light-gold) 0%, var(--hemera-cream) 100%);
+        }
+        
+        /* Efeitos de luz */
+        .light-shadow {
+            box-shadow: 0 20px 25px -5px rgba(251, 191, 36, 0.1), 0 10px 10px -5px rgba(251, 191, 36, 0.04);
+        }
+        
+        .glow-effect {
+            box-shadow: 0 0 20px rgba(251, 191, 36, 0.3);
+        }
+        
+        /* Scroll suave */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Esconder scrollbar */
         .hide-scrollbar::-webkit-scrollbar {
             display: none;
         }
         .hide-scrollbar {
-            -ms-overflow-style: none;  /* IE and Edge */
-            scrollbar-width: none;  /* Firefox */
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        
+        /* Animações */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .animate-fade-in-up {
+            animation: fadeInUp 0.8s ease-out;
+        }
+        
+        /* Estilos para o carrossel */
+        .carousel-card {
+            transition: all 0.3s ease;
+        }
+        
+        .carousel-card:hover {
+            transform: translateY(-8px);
+        }
+        
+        /* Botões premium */
+        .btn-premium {
+            background: linear-gradient(45deg, var(--hemera-gold), var(--hemera-light-gold));
+            color: var(--hemera-blue);
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-premium:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(251, 191, 36, 0.3);
+        }
+        
+        .btn-outline-premium {
+            border: 2px solid var(--hemera-gold);
+            color: var(--hemera-gold);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-outline-premium:hover {
+            background: var(--hemera-gold);
+            color: var(--hemera-blue);
         }
     </style>
 </head>
-<body class="bg-gray-100 font-inter">
+<body class="font-body bg-gradient-to-br from-blue-50 to-amber-50">
 
-    <!-- Container da Aplicação -->
+    <!-- Container Principal -->
     <div id="app" class="min-h-screen flex flex-col">
         
-        <!-- Cabeçalho (Header) com Autenticação -->
-        <header class="bg-white shadow-lg sticky top-0 z-20">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
-                <h1 class="text-2xl font-bold text-indigo-600">
-                    Oasis Resort & Spa
-                </h1>
-                
-                <!-- Botões/Informação de Autenticação -->
-                <nav class="flex items-center space-x-4">
-                    <span id="user-info" class="text-sm font-medium text-gray-700 hidden"></span>
+        <!-- Header Premium -->
+        <header class="bg-white/95 backdrop-blur-sm shadow-lg sticky top-0 z-20 border-b border-amber-200">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+                <div class="flex justify-between items-center">
+                    <!-- Logo Hemera -->
+                    <div class="flex items-center space-x-3">
+                        <div class="w-12 h-12 rounded-full aurora-gradient flex items-center justify-center glow-effect">
+                            <span class="text-white font-display font-bold text-xl">Η</span>
+                        </div>
+                        <div>
+                            <h1 class="text-2xl font-display font-bold text-blue-900">
+                                Hotel Hemera
+                            </h1>
+                            <p class="text-xs text-amber-600 font-medium tracking-wide">
+                                Luz e Luxo em Cada Experiência
+                            </p>
+                        </div>
+                    </div>
                     
-                    <!-- Botões de Login e Registo agora VISÍVEIS por padrão -->
-                    <button id="login-button" class="px-4 py-2 text-sm font-medium text-white bg-indigo-600 rounded-lg hover:bg-indigo-700 transition-colors shadow-md">
-                        Entrar (Login)
-                    </button>
-                    <button id="signup-button" class="px-4 py-2 text-sm font-medium text-indigo-600 border border-indigo-600 rounded-lg hover:bg-indigo-50 transition-colors">
-                        Registar (Cadastro)
-                    </button>
+                    <!-- Navegação Premium -->
+                    <nav class="hidden md:flex items-center space-x-8">
+                        <a href="#experiencias" class="text-blue-900 hover:text-amber-600 font-medium transition-colors">
+                            Experiências
+                        </a>
+                        <a href="#suites" class="text-blue-900 hover:text-amber-600 font-medium transition-colors">
+                            Suítes
+                        </a>
+                        <a href="#spa" class="text-blue-900 hover:text-amber-600 font-medium transition-colors">
+                            Spa
+                        </a>
+                        <a href="#gastronomia" class="text-blue-900 hover:text-amber-600 font-medium transition-colors">
+                            Gastronomia
+                        </a>
+                    </nav>
                     
-                    <button id="logout-button" class="px-4 py-2 text-sm font-medium text-white bg-red-500 rounded-lg hover:bg-red-600 transition-colors shadow-md hidden">
-                        Sair
-                    </button>
-                </nav>
+                    <!-- Área de Autenticação -->
+                    <div class="flex items-center space-x-4">
+                        <span id="user-info" class="hidden text-sm font-medium text-blue-900 font-display"></span>
+                        
+                        <a href="login.html" id="btn-login" class="text-blue-900 hover:text-amber-600 font-medium transition-colors">
+                            Entrar
+                        </a>
+                        <a href="register.html" id="btn-register" class="btn-premium px-6 py-2 rounded-full text-sm">
+                            Cadastrar
+                        </a>
+                        <button id="btn-logout" class="hidden bg-red-600 text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-red-700 transition-colors">
+                            Sair
+                        </button>
+                    </div>
+                </div>
             </div>
         </header>
 
-        <!-- Conteúdo Principal (Carrossel) -->
-        <main class="flex-grow py-12 px-4 md:px-8">
+        <!-- Hero Section - Aurora de Hemera -->
+        <section class="relative py-20 px-4 md:px-8 aurora-gradient text-white overflow-hidden">
+            <div class="absolute inset-0 bg-black/20"></div>
+            <div class="relative max-w-6xl mx-auto text-center">
+                <h2 class="text-5xl md:text-7xl font-display font-bold mb-6 animate-fade-in-up">
+                    Bem-vindo ao Hotel Hemera
+                </h2>
+                <p class="text-xl md:text-2xl mb-8 opacity-90 font-light animate-fade-in-up" style="animation-delay: 0.2s;">
+                    Onde a luz do dia encontra o luxo atemporal
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up" style="animation-delay: 0.4s;">
+                    <button class="btn-premium px-8 py-4 rounded-full text-lg">
+                        Explorar Suítes
+                    </button>
+                    <button class="btn-outline-premium px-8 py-4 rounded-full text-lg bg-white/10 backdrop-blur-sm">
+                        Ver Experiências
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção de Experiências Exclusivas -->
+        <main class="flex-grow py-16 px-4 md:px-8 bg-gradient-to-b from-amber-50 to-blue-50" id="experiencias">
             <section class="max-w-6xl mx-auto">
-                <h2 class="text-3xl font-bold text-gray-800 mb-6 px-4">Experiências Exclusivas do Resort</h2>
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl md:text-5xl font-display font-bold text-blue-900 mb-4">
+                        Experiências Exclusivas
+                    </h2>
+                    <p class="text-lg text-blue-700 max-w-3xl mx-auto">
+                        Descubra momentos únicos inspirados na luz e na mitologia grega, 
+                        criados especialmente para transformar sua estadia em uma jornada memorável.
+                    </p>
+                </div>
                 
                 <div class="relative overflow-hidden">
-                    <!-- Pista do Carrossel (onde os produtos se movem) -->
-                    <div id="carousel-track" class="flex transition-transform duration-500 ease-in-out">
-                        <!-- Os cartões de serviço serão inseridos aqui pelo JavaScript -->
+                    <!-- Pista do Carrossel -->
+                    <div id="carousel-track" class="flex transition-transform duration-700 ease-in-out">
+                        <!-- Os cartões serão inseridos aqui pelo JavaScript -->
                     </div>
                     
                     <!-- Botões de Navegação -->
-                    <button id="prev-button" class="absolute top-1/2 left-0 transform -translate-y-1/2 p-2 ml-2 bg-white rounded-full shadow-lg transition-opacity disabled:opacity-30 disabled:cursor-not-allowed z-10 text-gray-800 hover:bg-gray-100" aria-label="Anterior">
+                    <button id="prev-button" class="absolute top-1/2 left-4 transform -translate-y-1/2 p-3 bg-white/90 rounded-full shadow-xl transition-all duration-300 hover:bg-white hover:scale-110 z-10 text-blue-900" aria-label="Anterior">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
                     </button>
-                    <button id="next-button" class="absolute top-1/2 right-0 transform -translate-y-1/2 p-2 mr-2 bg-white rounded-full shadow-lg transition-opacity disabled:opacity-30 disabled:cursor-not-allowed z-10 text-gray-800 hover:bg-gray-100" aria-label="Próximo">
+                    <button id="next-button" class="absolute top-1/2 right-4 transform -translate-y-1/2 p-3 bg-white/90 rounded-full shadow-xl transition-all duration-300 hover:bg-white hover:scale-110 z-10 text-blue-900" aria-label="Próximo">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
                     </button>
                 </div>
 
                 <!-- Indicadores de Slide -->
-                <div id="indicators" class="flex justify-center mt-6 space-x-2">
+                <div id="indicators" class="flex justify-center mt-8 space-x-3">
                     <!-- Os indicadores serão inseridos aqui pelo JavaScript -->
                 </div>
             </section>
         </main>
         
-        <!-- Modal de Autenticação (Login/Registo) -->
-        <div id="auth-modal" class="hidden fixed inset-0 z-50 bg-gray-900 bg-opacity-75 flex items-center justify-center p-4">
-            <div class="bg-white rounded-xl shadow-2xl w-full max-w-md overflow-hidden">
-                <!-- Título e Botão de Fechar -->
-                <div class="bg-indigo-600 p-4 flex justify-between items-center">
-                    <h3 id="auth-title" class="text-xl font-bold text-white">Login</h3>
-                    <button id="close-modal" class="text-white hover:text-indigo-200 transition-colors" aria-label="Fechar Modal">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
-                    </button>
-                </div>
-
-                <div class="p-6">
-                    <!-- Formulário de Login -->
-                    <form id="login-form" class="space-y-4">
-                        <div>
-                            <label for="login-email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
-                            <input type="email" id="login-email" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500 transition duration-150">
+        <!-- Seção de Características Premium -->
+        <section class="py-16 px-4 md:px-8 bg-white">
+            <div class="max-w-6xl mx-auto">
+                <div class="grid md:grid-cols-3 gap-8">
+                    <!-- Característica 1 -->
+                    <div class="text-center p-8 rounded-2xl light-gradient light-shadow">
+                        <div class="w-16 h-16 rounded-full aurora-gradient mx-auto mb-6 flex items-center justify-center">
+                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707"></path>
+                            </svg>
                         </div>
-                        <div>
-                            <label for="login-password" class="block text-sm font-medium text-gray-700 mb-1">Palavra-passe</label>
-                            <input type="password" id="login-password" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500 transition duration-150">
+                        <h3 class="text-xl font-display font-bold text-blue-900 mb-4">Luz Natural Abundante</h3>
+                        <p class="text-blue-700">Suítes projetadas para capturar a luz do dia, inspiradas na deusa Hemera.</p>
+                    </div>
+                    
+                    <!-- Característica 2 -->
+                    <div class="text-center p-8 rounded-2xl light-gradient light-shadow">
+                        <div class="w-16 h-16 rounded-full aurora-gradient mx-auto mb-6 flex items-center justify-center">
+                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                            </svg>
                         </div>
-                        <button type="submit" class="w-full py-3 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700 transition-colors shadow-md">
-                            Entrar
-                        </button>
-                        <p class="text-sm text-center text-gray-600 mt-4">
-                            Ainda não tem conta? <a href="#" id="switch-to-signup" class="text-indigo-600 font-medium hover:text-indigo-800">Registe-se!</a>
-                        </p>
-                    </form>
-
-                    <!-- Formulário de Registo (Hidden by default) -->
-                    <form id="signup-form" class="space-y-4 hidden">
-                        <div>
-                            <label for="signup-email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
-                            <input type="email" id="signup-email" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500 transition duration-150">
+                        <h3 class="text-xl font-display font-bold text-blue-900 mb-4">Arquitetura Clássica</h3>
+                        <p class="text-blue-700">Design inspirado na arquitetura grega antiga com toques modernos de luxo.</p>
+                    </div>
+                    
+                    <!-- Característica 3 -->
+                    <div class="text-center p-8 rounded-2xl light-gradient light-shadow">
+                        <div class="w-16 h-16 rounded-full aurora-gradient mx-auto mb-6 flex items-center justify-center">
+                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                            </svg>
                         </div>
-                        <div>
-                            <label for="signup-password" class="block text-sm font-medium text-gray-700 mb-1">Palavra-passe</label>
-                            <input type="password" id="signup-password" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500 transition duration-150">
-                            <p class="text-xs text-gray-500 mt-1">Mínimo 6 caracteres.</p>
-                        </div>
-                        <button type="submit" class="w-full py-3 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700 transition-colors shadow-md">
-                            Criar Conta
-                        </button>
-                        <p class="text-sm text-center text-gray-600 mt-4">
-                            Já tem conta? <a href="#" id="switch-to-login" class="text-indigo-600 font-medium hover:text-indigo-800">Faça Login!</a>
-                        </p>
-                    </form>
-
-                    <!-- Mensagem de Erro -->
-                    <p id="auth-message" class="text-center text-sm font-medium text-red-500 mt-4 hidden"></p>
+                        <h3 class="text-xl font-display font-bold text-blue-900 mb-4">Energia do Dia</h3>
+                        <p class="text-blue-700">Ambientes que irradiam energia positiva e bem-estar, como a luz do amanhecer.</p>
+                    </div>
                 </div>
             </div>
-        </div>
+        </section>
+        
+        <!-- Footer Premium -->
+        <footer class="bg-blue-900 text-white py-12 px-4 md:px-8">
+            <div class="max-w-6xl mx-auto">
+                <div class="grid md:grid-cols-4 gap-8">
+                    <div>
+                        <div class="flex items-center space-x-3 mb-4">
+                            <div class="w-10 h-10 rounded-full aurora-gradient flex items-center justify-center">
+                                <span class="text-white font-display font-bold">Η</span>
+                            </div>
+                            <h3 class="text-xl font-display font-bold">Hotel Hemera</h3>
+                        </div>
+                        <p class="text-blue-200 text-sm">
+                            Onde a luz do dia encontra o luxo atemporal. 
+                            Cada momento é uma celebração da luz e da vida.
+                        </p>
+                    </div>
+                    
+                    <div>
+                        <h4 class="font-display font-semibold mb-4 text-amber-300">Experiências</h4>
+                        <ul class="space-y-2 text-sm text-blue-200">
+                            <li><a href="#" class="hover:text-amber-300 transition-colors">Suítes Premium</a></li>
+                            <li><a href="#" class="hover:text-amber-300 transition-colors">Spa Aurora</a></li>
+                            <li><a href="#" class="hover:text-amber-300 transition-colors">Gastronomia Divina</a></li>
+                            <li><a href="#" class="hover:text-amber-300 transition-colors">Eventos Especiais</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h4 class="font-display font-semibold mb-4 text-amber-300">Serviços</h4>
+                        <ul class="space-y-2 text-sm text-blue-200">
+                            <li><a href="#" class="hover:text-amber-300 transition-colors">Concierge 24h</a></li>
+                            <li><a href="#" class="hover:text-amber-300 transition-colors">Translado Premium</a></li>
+                            <li><a href="#" class="hover:text-amber-300 transition-colors">Experiências Personalizadas</a></li>
+                            <li><a href="#" class="hover:text-amber-300 transition-colors">Reservas Exclusivas</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h4 class="font-display font-semibold mb-4 text-amber-300">Contato</h4>
+                        <ul class="space-y-2 text-sm text-blue-200">
+                            <li>📞 +55 (11) 9999-9999</li>
+                            <li>✉️ reservas@hemerahotel.com</li>
+                            <li>📍 Onde a luz encontra o mar</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="border-t border-blue-800 mt-8 pt-8 text-center">
+                    <p class="text-blue-300 text-sm">
+                        © 2024 Hotel Hemera. Inspirado na deusa da luz. Todos os direitos reservados.
+                    </p>
+                </div>
+            </div>
+        </footer>
 
     </div>
 
-    <!-- Firebase SDK e Lógica da Aplicação -->
+    <!-- Scripts -->
+    <script type="module" src="js/config.js"></script>
+    <script type="module" src="js/auth.js"></script>
+    <script type="module" src="js/api.js"></script>
+    
     <script type="module">
-        // Importa módulos Firebase
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import { 
-            getAuth, 
-            signInAnonymously, 
-            signInWithCustomToken, 
-            onAuthStateChanged, 
-            createUserWithEmailAndPassword, 
-            signInWithEmailAndPassword, 
-            signOut 
-        } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-        import { getFirestore, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+        // Aguardar carregamento dos serviços
+        await Promise.all([
+            new Promise(resolve => {
+                if (window.authService) resolve()
+                else window.addEventListener('authServiceReady', resolve)
+            }),
+            new Promise(resolve => {
+                if (window.apiService) resolve()
+                else window.addEventListener('apiServiceReady', resolve)
+            })
+        ])
 
-        // --- Configuração e Inicialização Firebase (MANDATÓRIO) ---
-        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
-        const firebaseConfig = JSON.parse(typeof __firebase_config !== 'undefined' ? __firebase_config : '{}');
-
-        let app, db, auth;
-        try {
-            if (Object.keys(firebaseConfig).length > 0) {
-                app = initializeApp(firebaseConfig);
-                db = getFirestore(app);
-                auth = getAuth(app);
-
-                // Autenticação Inicial com token de ambiente ou anónima
-                if (typeof __initial_auth_token !== 'undefined') {
-                    signInWithCustomToken(auth, __initial_auth_token).catch(e => {
-                        console.error("Erro ao assinar com token customizado:", e);
-                        signInAnonymously(auth); // Fallback
-                    });
-                } else {
-                    signInAnonymously(auth);
-                }
-            } else {
-                console.warn("Configuração do Firebase não encontrada. A autenticação não estará disponível.");
-            }
-        } catch (e) {
-            console.error("Erro ao inicializar o Firebase:", e);
-        }
-
-        // --- Variáveis de Estado da Aplicação (Itens de Hotel) ---
-        let user = null;
-        let currentIndex = 0;
+        // --- Variáveis de Estado ---
+        let currentIndex = 0
         const products = [
-            { id: 1, name: "Suite Presidencial com Vista Mar", price: 799.00, rating: 4.9, image: "https://placehold.co/400x400/2563EB/ffffff?text=Suite+Vista+Mar" },
-            { id: 2, name: "Jantar Romântico Exclusivo", price: 150.00, rating: 4.7, image: "https://placehold.co/400x400/059669/ffffff?text=Jantar+Exclusivo" },
-            { id: 3, name: "Pacote de Spa Relaxamento Total", price: 220.00, rating: 4.8, image: "https://placehold.co/400x400/F59E0B/ffffff?text=Spa+Day" },
-            { id: 4, name: "Passeio de Barco Privado (4h)", price: 450.00, rating: 4.6, image: "https://placehold.co/400x400/D946EF/ffffff?text=Passeio+Barco" },
-            { id: 5, name: "Pequeno-Almoço Gourmet no Quarto", price: 35.00, rating: 4.5, image: "https://placehold.co/400x400/7C3AED/ffffff?text=Pequeno+Almoco" },
-            { id: 6, name: "Late Check-out Premium", price: 90.00, rating: 4.4, image: "https://placehold.co/400x400/10B981/ffffff?text=Late+Checkout" },
-        ];
+            { 
+                id: 1, 
+                name: "Suíte Aurora com Vista Mar", 
+                price: 1299.00, 
+                rating: 4.9, 
+                image: "https://placehold.co/400x400/1e3a8a/fbbf24?text=Suíte+Aurora",
+                description: "Suíte inspirada na aurora com vista panorâmica para o mar"
+            },
+            { 
+                id: 2, 
+                name: "Jantar Helios - Experiência Gastronômica", 
+                price: 280.00, 
+                rating: 4.8, 
+                image: "https://placehold.co/400x400/fbbf24/1e3a8a?text=Jantar+Helios",
+                description: "Jantar exclusivo inspirado na culinária grega antiga"
+            },
+            { 
+                id: 3, 
+                name: "Ritual de Luz - Spa Hemera", 
+                price: 350.00, 
+                rating: 4.9, 
+                image: "https://placehold.co/400x400/3b82f6/ffffff?text=Spa+Luz",
+                description: "Tratamento spa com terapias de luz e aromaterapia"
+            },
+            { 
+                id: 4, 
+                name: "Passeio ao Amanhecer - Barco Privativo", 
+                price: 680.00, 
+                rating: 4.7, 
+                image: "https://placehold.co/400x400/fde68a/1e3a8a?text=Amanhecer+Barco",
+                description: "Navegue enquanto o sol nasce, abençoado por Hemera"
+            },
+            { 
+                id: 5, 
+                name: "Café da Manhã Divino - Aurora Gourmet", 
+                price: 85.00, 
+                rating: 4.6, 
+                image: "https://placehold.co/400x400/64748b/ffffff?text=Café+Aurora",
+                description: "Café da manhã inspirado nos deuses do Olimpo"
+            },
+            { 
+                id: 6, 
+                name: "Retiro de Luz - Programa Bem-estar", 
+                price: 1200.00, 
+                rating: 4.8, 
+                image: "https://placehold.co/400x400/10b981/ffffff?text=Retiro+Luz",
+                description: "Programa completo de bem-estar com foco na luz e energia"
+            }
+        ]
         
         // --- Referências DOM ---
-        const trackEl = document.getElementById('carousel-track');
-        const prevButton = document.getElementById('prev-button');
-        const nextButton = document.getElementById('next-button');
-        const indicatorsEl = document.getElementById('indicators');
-        const loginBtn = document.getElementById('login-button');
-        const signupBtn = document.getElementById('signup-button');
-        const logoutBtn = document.getElementById('logout-button');
-        const userInfoEl = document.getElementById('user-info');
-        const authModal = document.getElementById('auth-modal');
-        const closeModaBtn = document.getElementById('close-modal');
-        const loginForm = document.getElementById('login-form');
-        const signupForm = document.getElementById('signup-form');
-        const authTitle = document.getElementById('auth-title');
-        const authMessage = document.getElementById('auth-message');
-        const switchToSignupLink = document.getElementById('switch-to-signup');
-        const switchToLoginLink = document.getElementById('switch-to-login');
+        const trackEl = document.getElementById('carousel-track')
+        const prevButton = document.getElementById('prev-button')
+        const nextButton = document.getElementById('next-button')
+        const indicatorsEl = document.getElementById('indicators')
+        const loginBtn = document.getElementById('btn-login')
+        const registerBtn = document.getElementById('btn-register')
+        const logoutBtn = document.getElementById('btn-logout')
+        const userInfoEl = document.getElementById('user-info')
         
-        // --- Helpers de UI ---
-
-        /** Mostra mensagem de erro temporariamente no modal. */
-        function showAuthMessage(message, isError = true) {
-            authMessage.textContent = message;
-            authMessage.className = `text-center text-sm font-medium mt-4 ${isError ? 'text-red-500' : 'text-green-500'}`;
-            authMessage.classList.remove('hidden');
-            setTimeout(() => {
-                authMessage.classList.add('hidden');
-            }, 5000);
-        }
-
-        /** Abre o modal e define o formulário a mostrar. */
-        function openModal(mode = 'login') {
-            authModal.classList.remove('hidden');
-            authMessage.classList.add('hidden'); // Limpa a mensagem ao abrir
-            if (mode === 'login') {
-                authTitle.textContent = 'Entrar (Login)';
-                loginForm.classList.remove('hidden');
-                signupForm.classList.add('hidden');
-            } else {
-                authTitle.textContent = 'Registo (Cadastro)';
-                signupForm.classList.remove('hidden');
-                loginForm.classList.add('hidden');
-            }
-        }
-
-        /** Fecha o modal. */
-        function closeModal() {
-            authModal.classList.add('hidden');
-            // Limpa os campos do formulário
-            loginForm.reset();
-            signupForm.reset();
-        }
-
-        // --- Lógica de Autenticação ---
-
-        /** Atualiza a UI com base no estado de autenticação */
-        function updateAuthUI(currentUser) {
-            if (currentUser && !currentUser.isAnonymous) {
-                // Utilizador autenticado
-                loginBtn.classList.add('hidden');
-                signupBtn.classList.add('hidden');
-                logoutBtn.classList.remove('hidden');
-                userInfoEl.classList.remove('hidden');
-                userInfoEl.textContent = `Olá, ${currentUser.email || currentUser.uid.substring(0, 8)}...`;
-            } else {
-                // Utilizador não autenticado ou anónimo
-                loginBtn.classList.remove('hidden');
-                signupBtn.classList.remove('hidden');
-                logoutBtn.classList.add('hidden');
-                userInfoEl.classList.add('hidden');
-                userInfoEl.textContent = '';
-            }
-            user = currentUser;
-        }
-
-        /** Tratamento de Erros Firebase */
-        function handleFirebaseError(error) {
-            let message;
-            switch (error.code) {
-                case 'auth/user-not-found':
-                case 'auth/wrong-password':
-                    message = 'Email ou palavra-passe incorretos.';
-                    break;
-                case 'auth/email-already-in-use':
-                    message = 'Este email já está registado.';
-                    break;
-                case 'auth/weak-password':
-                    message = 'A palavra-passe deve ter pelo menos 6 caracteres.';
-                    break;
-                case 'auth/invalid-email':
-                    message = 'Formato de email inválido.';
-                    break;
-                default:
-                    message = 'Ocorreu um erro de autenticação. Tente novamente.';
-                    console.error("Firebase Auth Error:", error.message);
-            }
-            showAuthMessage(message, true);
-        }
-
-        /** Função de Registo */
-        async function handleSignUp(e) {
-            e.preventDefault();
-            const email = e.target['signup-email'].value;
-            const password = e.target['signup-password'].value;
-
-            if (!auth) return showAuthMessage("Firebase não inicializado.", true);
-
-            try {
-                await createUserWithEmailAndPassword(auth, email, password);
-                showAuthMessage("Registo bem-sucedido! A entrar...", false);
-                closeModal();
-            } catch (error) {
-                handleFirebaseError(error);
-            }
-        }
-
-        /** Função de Login */
-        async function handleLogin(e) {
-            e.preventDefault();
-            const email = e.target['login-email'].value;
-            const password = e.target['login-password'].value;
-
-            if (!auth) return showAuthMessage("Firebase não inicializado.", true);
-
-            try {
-                await signInWithEmailAndPassword(auth, email, password);
-                showAuthMessage("Login bem-sucedido!", false);
-                closeModal();
-            } catch (error) {
-                handleFirebaseError(error);
-            }
-        }
-
-        /** Função de Logout */
-        async function handleLogout() {
-            if (!auth) return;
-            try {
-                await signOut(auth);
-                // Após o logout, tenta entrar anonimamente para manter o ambiente ativo
-                await signInAnonymously(auth); 
-                showAuthMessage("Sessão terminada com sucesso.", false);
-            } catch (error) {
-                console.error("Erro ao fazer logout:", error);
-            }
-        }
-
-        // --- Lógica do Carrossel ---
-
-        /** Determina quantos itens mostrar com base no tamanho do ecrã */
-        function getItemsToShow() {
-            if (window.innerWidth >= 1024) return 3; // lg
-            if (window.innerWidth >= 768) return 2;  // md
-            return 1; // sm e abaixo
-        }
-
-        /** Renderiza o elemento de classificação por estrelas */
-        function renderRating(rating) {
-            const fullStars = Math.floor(rating);
-            const hasHalfStar = rating % 1 !== 0;
-            const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
-            let html = '';
-
-            // Adiciona Estrelas Preenchidas (Full)
+        // --- Funções de UI ---
+        function renderStars(rating) {
+            const fullStars = Math.floor(rating)
+            const hasHalfStar = rating % 1 !== 0
+            let starsHtml = ''
+            
             for (let i = 0; i < fullStars; i++) {
-                html += `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-yellow-400"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>`;
+                starsHtml += '<svg class="w-4 h-4 text-amber-400 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>'
             }
-
-            // Adiciona Meia Estrela (Half - usando um truque visual, ou apenas uma estrela cheia no Lucide)
+            
             if (hasHalfStar) {
-                html += `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-yellow-400"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>`;
+                starsHtml += '<svg class="w-4 h-4 text-amber-400 fill-current" viewBox="0 0 20 20"><defs><linearGradient id="half"><stop offset="50%" stop-color="currentColor"/><stop offset="50%" stop-color="#e5e7eb"/></linearGradient></defs><path fill="url(#half)" d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>'
             }
-
-            // Adiciona Estrelas Vazias (Empty)
+            
+            const emptyStars = 5 - Math.ceil(rating)
             for (let i = 0; i < emptyStars; i++) {
-                html += `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-gray-300"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>`;
+                starsHtml += '<svg class="w-4 h-4 text-gray-300 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>'
             }
-
-            return `<div class="flex items-center space-x-0.5">${html}<span class="ml-2 text-sm text-gray-600 font-medium">(${rating.toFixed(1)})</span></div>`;
+            
+            return starsHtml
         }
-
-        /** Cria e retorna o HTML para um único cartão de serviço */
-        function createProductCard(product) {
-            const card = document.createElement('div');
-            // Calcula a largura responsiva para o cartão
-            card.className = "flex flex-col flex-shrink-0 w-full md:w-1/2 lg:w-1/3 p-4";
+        
+        function createProductCard(product, index) {
+            const card = document.createElement('div')
+            card.className = 'carousel-card flex-shrink-0 w-full md:w-1/2 lg:w-1/3 px-4'
             
             card.innerHTML = `
-                <div class="relative bg-white rounded-xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 h-full flex flex-col">
-                    <img 
-                        src="${product.image}" 
-                        alt="${product.name}" 
-                        class="w-full h-48 object-cover"
-                        onerror="this.onerror=null; this.src='https://placehold.co/400x400/94A3B8/ffffff?text=Servico+Hotel';"
-                    />
-                    <button 
-                        class="absolute top-3 right-3 p-2 bg-white rounded-full text-red-500 hover:text-red-600 transition-colors shadow-md ring-2 ring-white"
-                        aria-label="Adicionar aos favoritos"
-                    >
-                        <!-- Coração (Heart) do Lucide -->
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 1.05-4.5 3.5-1.5-2.45-2.74-3.5-4.5-3.5A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
-                    </button>
-                    <div class="p-5 flex flex-col flex-grow">
-                        <h3 class="text-xl font-semibold text-gray-900 mb-2 line-clamp-2">${product.name}</h3>
-                        ${renderRating(product.rating)}
-                        <div class="mt-4 flex justify-between items-center pt-2 border-t border-gray-100">
-                            <span class="text-3xl font-extrabold text-indigo-600">${product.price.toFixed(2)}€</span>
-                            <button class="px-5 py-2 text-md font-bold text-white bg-indigo-600 rounded-xl hover:bg-indigo-700 transition-colors shadow-lg shadow-indigo-500/50">
+                <div class="bg-white rounded-2xl shadow-xl overflow-hidden light-shadow hover:glow-effect transition-all duration-300">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="${product.image}" alt="${product.name}" class="w-full h-full object-cover">
+                        <div class="absolute top-4 right-4 bg-amber-400 text-blue-900 px-3 py-1 rounded-full text-sm font-bold">
+                            ★ ${product.rating}
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-display font-bold text-blue-900 mb-3">${product.name}</h3>
+                        <p class="text-blue-700 text-sm mb-4">${product.description}</p>
+                        <div class="flex items-center justify-between">
+                            <div class="text-2xl font-bold text-amber-600">R$ ${product.price.toFixed(2)}</div>
+                            <button class="bg-blue-900 text-white px-6 py-2 rounded-full hover:bg-blue-800 transition-colors font-medium">
                                 Reservar
                             </button>
                         </div>
                     </div>
                 </div>
-            `;
-            return card;
-        }
-
-        /** Renderiza e atualiza o estado visual do carrossel */
-        function renderCarousel() {
-            const itemsToShow = getItemsToShow();
-            const totalPages = Math.ceil(products.length / itemsToShow);
-
-            // 1. Renderizar Cartões
-            trackEl.innerHTML = '';
-            products.forEach(product => {
-                trackEl.appendChild(createProductCard(product));
-            });
-
-            // Ajustar largura da pista (track) e posição
-            const trackWidth = (products.length / itemsToShow) * 100;
-            trackEl.style.width = `${trackWidth}%`;
+            `
             
-            // 2. Aplicar Deslocamento (Transform)
-            const offset = currentIndex * (100 / (products.length / itemsToShow));
-            trackEl.style.transform = `translateX(-${offset}%)`;
-
-            // 3. Atualizar Botões
-            prevButton.disabled = currentIndex === 0;
-            nextButton.disabled = currentIndex >= totalPages - 1;
-
-            // 4. Renderizar Indicadores
-            indicatorsEl.innerHTML = '';
-            for (let i = 0; i < totalPages; i++) {
-                const indicator = document.createElement('div');
-                indicator.className = `cursor-pointer w-3 h-3 rounded-full transition-colors ${
-                    i === currentIndex ? 'bg-indigo-600 scale-110' : 'bg-gray-300 hover:bg-gray-400'
-                }`;
-                indicator.setAttribute('role', 'button');
-                indicator.setAttribute('aria-label', `Ir para a página ${i + 1}`);
-                indicator.addEventListener('click', () => goToSlide(i));
-                indicatorsEl.appendChild(indicator);
-            }
+            return card
         }
-
-        /** Navega para um slide específico */
-        function goToSlide(index) {
-            const itemsToShow = getItemsToShow();
-            const totalPages = Math.ceil(products.length / itemsToShow);
-            if (index >= 0 && index < totalPages) {
-                currentIndex = index;
-                renderCarousel();
+        
+        function renderCarousel() {
+            trackEl.innerHTML = ''
+            products.forEach((product, index) => {
+                trackEl.appendChild(createProductCard(product, index))
+            })
+            
+            renderIndicators()
+            updateCarouselPosition()
+        }
+        
+        function renderIndicators() {
+            indicatorsEl.innerHTML = ''
+            const numSlides = Math.ceil(products.length / getItemsPerPage())
+            
+            for (let i = 0; i < numSlides; i++) {
+                const indicator = document.createElement('button')
+                indicator.className = `w-3 h-3 rounded-full transition-all duration-300 ${
+                    i === Math.floor(currentIndex / getItemsPerPage()) 
+                        ? 'bg-amber-400 scale-125' 
+                        : 'bg-blue-300 hover:bg-blue-400'
+                }`
+                indicator.addEventListener('click', () => {
+                    currentIndex = i * getItemsPerPage()
+                    updateCarouselPosition()
+                })
+                indicatorsEl.appendChild(indicator)
             }
         }
         
-        /** Avança para o próximo slide */
-        function nextSlide() {
-            const itemsToShow = getItemsToShow();
-            const totalPages = Math.ceil(products.length / itemsToShow);
-            goToSlide(currentIndex >= totalPages - 1 ? 0 : currentIndex + 1);
+        function getItemsPerPage() {
+            if (window.innerWidth < 768) return 1
+            if (window.innerWidth < 1024) return 2
+            return 3
         }
-
-        /** Recua para o slide anterior */
-        function prevSlide() {
-            const itemsToShow = getItemsToShow();
-            const totalPages = Math.ceil(products.length / itemsToShow);
-            goToSlide(currentIndex === 0 ? totalPages - 1 : currentIndex - 1);
+        
+        function updateCarouselPosition() {
+            const itemsPerPage = getItemsPerPage()
+            const translateX = -(currentIndex * (100 / itemsPerPage))
+            trackEl.style.transform = `translateX(${translateX}%)`
+            
+            prevButton.disabled = currentIndex === 0
+            nextButton.disabled = currentIndex >= products.length - itemsPerPage
+            
+            renderIndicators()
         }
-
-        // --- Event Listeners e Inicialização ---
-
-        // Eventos de clique do carrossel
-        prevButton.addEventListener('click', prevSlide);
-        nextButton.addEventListener('click', nextSlide);
         
-        // Eventos de clique dos botões de autenticação
-        loginBtn.addEventListener('click', () => openModal('login'));
-        signupBtn.addEventListener('click', () => openModal('signup'));
-        logoutBtn.addEventListener('click', handleLogout);
-        closeModaBtn.addEventListener('click', closeModal);
-        
-        // Eventos de troca de formulário no modal
-        switchToSignupLink.addEventListener('click', (e) => { e.preventDefault(); openModal('signup'); });
-        switchToLoginLink.addEventListener('click', (e) => { e.preventDefault(); openModal('login'); });
-
-        // Eventos de submissão do formulário
-        loginForm.addEventListener('submit', handleLogin);
-        signupForm.addEventListener('submit', handleSignUp);
-
-        // Inicialização da UI
-        window.addEventListener('load', () => {
-            renderCarousel();
-            // Listener de Autenticação
-            if (auth) {
-                onAuthStateChanged(auth, (currentUser) => {
-                    updateAuthUI(currentUser);
-                });
-            } else {
-                 // Garante que os botões de Login/Registo aparecem se o Firebase não estiver ativo
-                updateAuthUI(null); 
+        // --- Funções de Autenticação ---
+        async function updateAuthUI() {
+            try {
+                const result = await window.authService.getCurrentUser()
+                
+                if (result.success && result.data && result.data.supabase) {
+                    const user = result.data.supabase
+                    loginBtn?.classList.add('hidden')
+                    registerBtn?.classList.add('hidden')
+                    logoutBtn?.classList.remove('hidden')
+                    
+                    if (userInfoEl) {
+                        userInfoEl.textContent = `Olá, ${user.email}`
+                        userInfoEl.classList.remove('hidden')
+                    }
+                } else {
+                    loginBtn?.classList.remove('hidden')
+                    registerBtn?.classList.remove('hidden')
+                    logoutBtn?.classList.add('hidden')
+                    
+                    if (userInfoEl) {
+                        userInfoEl.classList.add('hidden')
+                    }
+                }
+            } catch (error) {
+                console.error('Erro ao atualizar UI de autenticação:', error)
+                loginBtn?.classList.remove('hidden')
+                registerBtn?.classList.remove('hidden')
+                logoutBtn?.classList.add('hidden')
+                
+                if (userInfoEl) {
+                    userInfoEl.classList.add('hidden')
+                }
             }
-        });
-
-        // Responsividade do Carrossel (re-renderiza em resize)
-        let resizeTimeout;
+        }
+        
+        async function handleLogout() {
+            try {
+                await window.authService.logout()
+                updateAuthUI()
+                // Mostrar mensagem de sucesso
+                showTemporaryMessage('Logout realizado com sucesso!')
+            } catch (error) {
+                console.error('Erro no logout:', error)
+                showTemporaryMessage('Erro ao fazer logout. Tente novamente.')
+            }
+        }
+        
+        function showTemporaryMessage(message, duration = 3000) {
+            // Criar elemento de mensagem
+            const messageEl = document.createElement('div')
+            messageEl.className = 'fixed top-4 right-4 bg-amber-400 text-blue-900 px-6 py-3 rounded-full shadow-lg z-50 font-medium'
+            messageEl.textContent = message
+            document.body.appendChild(messageEl)
+            
+            setTimeout(() => {
+                messageEl.remove()
+            }, duration)
+        }
+        
+        // --- Event Listeners ---
+        prevButton.addEventListener('click', () => {
+            if (currentIndex > 0) {
+                currentIndex--
+                updateCarouselPosition()
+            }
+        })
+        
+        nextButton.addEventListener('click', () => {
+            const itemsPerPage = getItemsPerPage()
+            if (currentIndex < products.length - itemsPerPage) {
+                currentIndex++
+                updateCarouselPosition()
+            }
+        })
+        
+        logoutBtn.addEventListener('click', handleLogout)
+        
         window.addEventListener('resize', () => {
-            clearTimeout(resizeTimeout);
-            resizeTimeout = setTimeout(() => {
-                // Redefine o índice para 0 ao redimensionar para evitar quebras de layout
-                currentIndex = 0; 
-                renderCarousel();
-            }, 250);
-        });
-
+            currentIndex = 0
+            updateCarouselPosition()
+        })
+        
+        // --- Inicialização ---
+        window.addEventListener('load', async () => {
+            renderCarousel()
+            
+            // Aguardar authService estar pronto
+            if (window.authService) {
+                await updateAuthUI()
+                
+                // Observar mudanças de autenticação
+                window.authService.onAuthStateChanged((event, session) => {
+                    updateAuthUI()
+                })
+            }
+        })
     </script>
+    
 </body>
 </html>

@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro - Hotel Hemera</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Paleta de cores Hemera - Deusa da Luz */
+        :root {
+            --hemera-blue: #1e3a8a;
+            --hemera-gold: #d4af37;
+            --hemera-gold-light: #f4e4bc;
+            --hemera-gold-dark: #b8860b;
+            --hemera-blue-light: #3b82f6;
+            --hemera-gold-gradient: linear-gradient(135deg, #d4af37, #f4e4bc, #d4af37);
+            --hemera-white: #fefefe;
+            --hemera-cream: #fef7ed;
+            --hemera-gray: #64748b;
+        }
+        
+        .font-display {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .font-body {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        /* Gradientes inspirados na aurora */
+        .aurora-gradient {
+            background: linear-gradient(135deg, var(--hemera-blue), var(--hemera-gold-dark), var(--hemera-gold), var(--hemera-gold-light));
+            background-size: 300% 300%;
+            animation: aurora 8s ease-in-out infinite;
+        }
+        
+        @keyframes aurora {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        
+        /* Gradiente dourado luxuoso */
+        .gold-gradient {
+            background: var(--hemera-gold-gradient);
+            background-size: 200% 200%;
+            animation: gold-shine 4s ease-in-out infinite;
+        }
+        
+        @keyframes gold-shine {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        
+        .light-gradient {
+            background: linear-gradient(135deg, var(--hemera-light-gold) 0%, var(--hemera-cream) 100%);
+        }
+        
+        /* Efeitos de luz */
+        .light-shadow {
+            box-shadow: 0 20px 25px -5px rgba(251, 191, 36, 0.1), 0 10px 10px -5px rgba(251, 191, 36, 0.04);
+        }
+        
+        .glow-effect {
+            box-shadow: 0 0 20px rgba(251, 191, 36, 0.3);
+        }
+        
+        /* Animações */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .animate-fade-in-up {
+            animation: fadeInUp 0.8s ease-out;
+        }
+        
+        /* Botões premium */
+        .btn-premium {
+            background: var(--hemera-gold-gradient);
+            color: var(--hemera-blue);
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-premium:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 35px rgba(212, 175, 55, 0.4);
+            filter: brightness(1.1);
+        }
+        
+        .btn-outline-premium {
+            border: 2px solid var(--hemera-gold);
+            color: var(--hemera-gold);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-outline-premium:hover {
+            background: var(--hemera-gold);
+            color: var(--hemera-blue);
+        }
+        
+        .btn-premium-outline {
+            background: transparent;
+            border: 2px solid var(--hemera-gold);
+            color: var(--hemera-gold);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-premium-outline:hover {
+            background: var(--hemera-gold);
+            color: var(--hemera-blue);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(251, 191, 36, 0.3);
+        }
+        
+        /* Estilos do formulário */
+        .form-input {
+            background: rgba(255, 255, 255, 0.9);
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+        
+        .form-input:focus {
+            border-color: var(--hemera-gold);
+            box-shadow: 0 0 0 3px rgba(251, 191, 36, 0.1);
+        }
+        
+        .form-input.error {
+            border-color: #ef4444;
+            box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+        }
+    </style>
+</head>
+<body class="font-body bg-gradient-to-br from-blue-50 to-amber-50 min-h-screen">
+
+    <!-- Container Principal -->
+    <div class="min-h-screen flex flex-col">
+        
+        <!-- Header Premium -->
+        <header class="bg-white/95 backdrop-blur-sm shadow-lg sticky top-0 z-20 border-b border-amber-200">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+                <div class="flex justify-between items-center">
+                    <!-- Logo Hemera -->
+                    <div class="flex items-center space-x-3">
+                        <div class="w-12 h-12 rounded-full aurora-gradient flex items-center justify-center glow-effect">
+                            <span class="text-white font-display font-bold text-xl">Η</span>
+                        </div>
+                        <div>
+                            <h1 class="text-2xl font-display font-bold text-blue-900">
+                                Hotel Hemera
+                            </h1>
+                            <p class="text-xs text-amber-600 font-medium tracking-wide">
+                                Luz e Luxo em Cada Experiência
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <!-- Link para Home -->
+                    <a href="index.html" class="text-blue-900 hover:text-amber-600 font-medium transition-colors flex items-center space-x-2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+                        </svg>
+                        <span>Voltar para Home</span>
+                    </a>
+                </div>
+            </div>
+        </header>
+
+        <!-- Seção de Cadastro -->
+            <main class="flex-grow flex items-center justify-center py-12 px-4">
+                <div class="w-full max-w-6xl">
+                <!-- Card de Cadastro -->
+                    <div class="bg-white rounded-2xl shadow-2xl light-shadow overflow-hidden animate-fade-in-up w-full max-w-5xl">
+                    <!-- Header do Card -->
+                    <div class="aurora-gradient p-8 text-center">
+                        <div class="w-20 h-20 rounded-full bg-white/20 flex items-center justify-center mx-auto mb-4 glow-effect">
+                            <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"></path>
+                            </svg>
+                        </div>
+                        <h2 class="text-3xl font-display font-bold text-white mb-2">
+                            Junte-se à luz
+                        </h2>
+                        <p class="text-blue-100">
+                            Crie sua conta no Hotel Hemera
+                        </p>
+                    </div>
+                    
+                    <!-- Formulário de Cadastro -->
+                    <div class="p-8">
+                        <form id="register-form" class="max-w-4xl mx-auto">
+                            <!-- Grid com duas colunas -->
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <!-- Coluna 1 - Informações Pessoais -->
+                                <div class="space-y-6">
+                                    <div class="col-span-2">
+                                        <h3 class="text-lg font-display font-semibold text-blue-900 mb-4 border-b border-amber-200 pb-2">
+                                            Informações Pessoais
+                                        </h3>
+                                    </div>
+                                    
+                                    <div>
+                                        <label for="register-first-name" class="block text-sm font-medium text-blue-900 mb-2">
+                                            Primeiro Nome
+                                        </label>
+                                        <input 
+                                            type="text" 
+                                            id="register-first-name" 
+                                            name="first_name"
+                                            required 
+                                            class="form-input w-full px-4 py-3 rounded-xl focus:outline-none"
+                                            placeholder="Seu primeiro nome"
+                                        >
+                                    </div>
+                                    
+                                    <div>
+                                        <label for="register-last-name" class="block text-sm font-medium text-blue-900 mb-2">
+                                            Sobrenome
+                                        </label>
+                                        <input 
+                                            type="text" 
+                                            id="register-last-name" 
+                                            name="last_name"
+                                            required 
+                                            class="form-input w-full px-4 py-3 rounded-xl focus:outline-none"
+                                            placeholder="Seu sobrenome"
+                                        >
+                                    </div>
+                                    
+                                    <div>
+                                        <label for="register-email" class="block text-sm font-medium text-blue-900 mb-2">
+                                            Email
+                                        </label>
+                                        <input 
+                                            type="email" 
+                                            id="register-email" 
+                                            name="email"
+                                            required 
+                                            class="form-input w-full px-4 py-3 rounded-xl focus:outline-none"
+                                            placeholder="seu@email.com"
+                                        >
+                                    </div>
+                                    
+                                    <div>
+                                        <label for="register-phone" class="block text-sm font-medium text-blue-900 mb-2">
+                                            Telefone
+                                        </label>
+                                        <input 
+                                            type="tel" 
+                                            id="register-phone" 
+                                            name="phone"
+                                            required 
+                                            class="form-input w-full px-4 py-3 rounded-xl focus:outline-none"
+                                            placeholder="(00) 00000-0000"
+                                        >
+                                    </div>
+                                    
+                                    <div>
+                                        <label for="register-birth-date" class="block text-sm font-medium text-blue-900 mb-2">
+                                            Data de Nascimento
+                                        </label>
+                                        <input 
+                                            type="date" 
+                                            id="register-birth-date" 
+                                            name="birth_date"
+                                            class="form-input w-full px-4 py-3 rounded-xl focus:outline-none"
+                                        >
+                                    </div>
+                                    
+                                    <div>
+                                        <label for="register-cpf" class="block text-sm font-medium text-blue-900 mb-2">
+                                            CPF
+                                        </label>
+                                        <input 
+                                            type="text" 
+                                            id="register-cpf" 
+                                            name="cpf"
+                                            class="form-input w-full px-4 py-3 rounded-xl focus:outline-none"
+                                            placeholder="000.000.000-00"
+                                        >
+                                    </div>
+                                </div>
+                                
+                                <!-- Coluna 2 - Endereço e Segurança -->
+                                <div class="space-y-6">
+                                    <div class="col-span-2">
+                                        <h3 class="text-lg font-display font-semibold text-blue-900 mb-4 border-b border-amber-200 pb-2">
+                                            Endereço
+                                        </h3>
+                                    </div>
+                                    
+                                    <div>
+                                        <label for="register-address" class="block text-sm font-medium text-blue-900 mb-2">
+                                            Endereço
+                                        </label>
+                                        <input 
+                                            type="text" 
+                                            id="register-address" 
+                                            name="address"
+                                            class="form-input w-full px-4 py-3 rounded-xl focus:outline-none"
+                                            placeholder="Rua, Número, Bairro"
+                                        >
+                                    </div>
+                                    
+                                    <div>
+                                        <label for="register-city" class="block text-sm font-medium text-blue-900 mb-2">
+                                            Cidade
+                                        </label>
+                                        <input 
+                                            type="text" 
+                                            id="register-city" 
+                                            name="city"
+                                            class="form-input w-full px-4 py-3 rounded-xl focus:outline-none"
+                                            placeholder="Sua cidade"
+                                        >
+                                    </div>
+                                    
+                                    <div>
+                                        <label for="register-state" class="block text-sm font-medium text-blue-900 mb-2">
+                                            Estado
+                                        </label>
+                                        <select id="register-state" name="state" class="form-input w-full px-4 py-3 rounded-xl focus:outline-none">
+                                            <option value="">Selecione o Estado</option>
+                                            <option value="AC">Acre</option>
+                                            <option value="AL">Alagoas</option>
+                                            <option value="AP">Amapá</option>
+                                            <option value="AM">Amazonas</option>
+                                            <option value="BA">Bahia</option>
+                                            <option value="CE">Ceará</option>
+                                            <option value="DF">Distrito Federal</option>
+                                            <option value="ES">Espírito Santo</option>
+                                            <option value="GO">Goiás</option>
+                                            <option value="MA">Maranhão</option>
+                                            <option value="MT">Mato Grosso</option>
+                                            <option value="MS">Mato Grosso do Sul</option>
+                                            <option value="MG">Minas Gerais</option>
+                                            <option value="PA">Pará</option>
+                                            <option value="PB">Paraíba</option>
+                                            <option value="PR">Paraná</option>
+                                            <option value="PE">Pernambuco</option>
+                                            <option value="PI">Piauí</option>
+                                            <option value="RJ">Rio de Janeiro</option>
+                                            <option value="RN">Rio Grande do Norte</option>
+                                            <option value="RS">Rio Grande do Sul</option>
+                                            <option value="RO">Rondônia</option>
+                                            <option value="RR">Roraima</option>
+                                            <option value="SC">Santa Catarina</option>
+                                            <option value="SP">São Paulo</option>
+                                            <option value="SE">Sergipe</option>
+                                            <option value="TO">Tocantins</option>
+                                        </select>
+                                    </div>
+                                    
+                                    <div>
+                                        <label for="register-zip" class="block text-sm font-medium text-blue-900 mb-2">
+                                            CEP
+                                        </label>
+                                        <input 
+                                            type="text" 
+                                            id="register-zip" 
+                                            name="zip_code"
+                                            class="form-input w-full px-4 py-3 rounded-xl focus:outline-none"
+                                            placeholder="00000-000"
+                                        >
+                                    </div>
+                                    
+                                    <div class="col-span-2">
+                                        <h3 class="text-lg font-display font-semibold text-blue-900 mb-4 border-b border-amber-200 pb-2">
+                                            Segurança
+                                        </h3>
+                                    </div>
+                                    
+                                    <div>
+                                        <label for="register-password" class="block text-sm font-medium text-blue-900 mb-2">
+                                            Senha
+                                        </label>
+                                        <input 
+                                            type="password" 
+                                            id="register-password" 
+                                            name="password"
+                                            required 
+                                            class="form-input w-full px-4 py-3 rounded-xl focus:outline-none"
+                                            placeholder="••••••••"
+                                        >
+                                    </div>
+                                    
+                                    <div>
+                                        <label for="register-confirm-password" class="block text-sm font-medium text-blue-900 mb-2">
+                                            Confirmar Senha
+                                        </label>
+                                        <input 
+                                            type="password" 
+                                            id="register-confirm-password" 
+                                            name="confirmPassword"
+                                            required 
+                                            class="form-input w-full px-4 py-3 rounded-xl focus:outline-none"
+                                            placeholder="••••••••"
+                                        >
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Termos e Condições - Linha única -->
+                            <div class="mt-6">
+                                <div class="flex items-center">
+                                    <input type="checkbox" id="terms" name="terms" required class="rounded border-gray-300 text-amber-500 focus:ring-amber-500">
+                                    <label for="terms" class="ml-2 text-sm text-blue-700">
+                                        Concordo com os <a href="#" class="text-amber-600 hover:text-amber-700 transition-colors">termos de serviço</a> e <a href="#" class="text-amber-600 hover:text-amber-700 transition-colors">política de privacidade</a>
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <!-- Botão de Criar Conta -->
+                            <button 
+                                type="submit" 
+                                class="btn-premium w-full py-3 rounded-xl text-lg font-semibold transition-all duration-300 mt-6">
+                                Criar Conta
+                            </button>
+                        </form>
+                            
+                            <div>
+                                <label for="register-state" class="block text-sm font-medium text-blue-900 mb-2">
+                                    Estado
+                                </label>
+                                <select id="register-state" name="state" class="form-input w-full px-4 py-3 rounded-xl focus:outline-none">
+                                    <option value="">Selecione o Estado</option>
+                                    <option value="AC">Acre</option>
+                                    <option value="AL">Alagoas</option>
+                                    <option value="AP">Amapá</option>
+                                    <option value="AM">Amazonas</option>
+                                    <option value="BA">Bahia</option>
+                                    <option value="CE">Ceará</option>
+                                    <option value="DF">Distrito Federal</option>
+                                    <option value="ES">Espírito Santo</option>
+                                    <option value="GO">Goiás</option>
+                                    <option value="MA">Maranhão</option>
+                                    <option value="MT">Mato Grosso</option>
+                                    <option value="MS">Mato Grosso do Sul</option>
+                                    <option value="MG">Minas Gerais</option>
+                                    <option value="PA">Pará</option>
+                                    <option value="PB">Paraíba</option>
+                                    <option value="PR">Paraná</option>
+                                    <option value="PE">Pernambuco</option>
+                                    <option value="PI">Piauí</option>
+                                    <option value="RJ">Rio de Janeiro</option>
+                                    <option value="RN">Rio Grande do Norte</option>
+                                    <option value="RS">Rio Grande do Sul</option>
+                                    <option value="RO">Rondônia</option>
+                                    <option value="RR">Roraima</option>
+                                    <option value="SC">Santa Catarina</option>
+                                    <option value="SP">São Paulo</option>
+                                    <option value="SE">Sergipe</option>
+                                    <option value="TO">Tocantins</option>
+                                </select>
+                            </div>
+                            
+                            <div>
+                                <label for="register-zip" class="block text-sm font-medium text-blue-900 mb-2">
+                                    CEP
+                                </label>
+                                <input 
+                                    type="text" 
+                                    id="register-zip" 
+                                    name="zip_code"
+                                    class="form-input w-full px-4 py-3 rounded-xl focus:outline-none"
+                                    placeholder="00000-000"
+                                >
+                            </div>
+                            
+                            <div>
+                                <label for="register-password" class="block text-sm font-medium text-blue-900 mb-2">
+                                    Senha
+                                </label>
+                                <input 
+                                    type="password" 
+                                    id="register-password" 
+                                    name="password"
+                                    required 
+                                    class="form-input w-full px-4 py-3 rounded-xl focus:outline-none"
+                                    placeholder="••••••••"
+                                >
+                            </div>
+                            
+                            <div>
+                                <label for="register-confirm-password" class="block text-sm font-medium text-blue-900 mb-2">
+                                    Confirmar Senha
+                                </label>
+                                <input 
+                                    type="password" 
+                                    id="register-confirm-password" 
+                                    name="confirmPassword"
+                                    required 
+                                    class="form-input w-full px-4 py-3 rounded-xl focus:outline-none"
+                                    placeholder="••••••••"
+                                >
+                            </div>
+                            
+                            <div class="flex items-center">
+                                <input type="checkbox" id="terms" name="terms" required class="rounded border-gray-300 text-amber-500 focus:ring-amber-500">
+                                <label for="terms" class="ml-2 text-sm text-blue-700">
+                                    Concordo com os <a href="#" class="text-amber-600 hover:text-amber-700 transition-colors">termos de serviço</a> e <a href="#" class="text-amber-600 hover:text-amber-700 transition-colors">política de privacidade</a>
+                                </label>
+                            </div>
+                            
+                            <button 
+                                type="submit" 
+                                class="btn-premium w-full py-3 rounded-xl text-lg font-semibold transition-all duration-300">
+                                Criar Conta
+                            </button>
+                        </form>
+                        
+                        <!-- Mensagem de Erro -->
+                        <div id="error-message" class="hidden mt-4 p-3 bg-red-50 border border-red-200 rounded-lg">
+                            <p class="text-sm text-red-600"></p>
+                        </div>
+                        
+                        <!-- Mensagem de Sucesso -->
+                        <div id="success-message" class="hidden mt-4 p-3 bg-green-50 border border-green-200 rounded-lg">
+                            <p class="text-sm text-green-600"></p>
+                        </div>
+                        
+                        <!-- Botão de Navegação para Login -->
+                        <div class="mt-6">
+                            <a href="login.html" class="btn-premium-outline w-full py-3 rounded-xl text-lg font-semibold transition-all duration-300 inline-flex items-center justify-center space-x-2">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"></path>
+                                </svg>
+                                <span>Já Tenho uma Conta</span>
+                            </a>
+                        </div>
+                        
+                        <!-- Link para Login (Texto) -->
+                        <div class="mt-4 text-center">
+                            <p class="text-sm text-blue-700">
+                                Já tem uma conta? 
+                                <a href="login.html" class="text-amber-600 hover:text-amber-700 font-semibold transition-colors">
+                                    Faça login aqui
+                                </a>
+                            </p>
+                        </div>
+                        
+                        <!-- Divisor -->
+                        <div class="mt-8 flex items-center">
+                            <div class="flex-1 border-t border-blue-200"></div>
+                            <span class="px-4 text-sm text-blue-600">ou</span>
+                            <div class="flex-1 border-t border-blue-200"></div>
+                        </div>
+                        
+                        <!-- Botão de Login Anônimo -->
+                        <div class="mt-6">
+                            <button 
+                                id="anonymous-register-btn"
+                                class="w-full py-3 border-2 border-blue-200 text-blue-700 rounded-xl hover:bg-blue-50 transition-colors font-medium">
+                                Continuar como Visitante
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Link para Home -->
+                <div class="text-center mt-8">
+                    <a href="index.html" class="text-amber-600 hover:text-amber-700 font-medium transition-colors inline-flex items-center space-x-2">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                        </svg>
+                        <span>Voltar para Home</span>
+                    </a>
+                </div>
+            </div>
+        </main>
+        
+        <!-- Footer Premium -->
+        <footer class="bg-blue-900 text-white py-8 px-4 mt-auto">
+            <div class="max-w-6xl mx-auto text-center">
+                <div class="flex items-center justify-center space-x-3 mb-4">
+                    <div class="w-8 h-8 rounded-full aurora-gradient flex items-center justify-center">
+                        <span class="text-white font-display font-bold text-sm">Η</span>
+                    </div>
+                    <h3 class="text-lg font-display font-bold">Hotel Hemera</h3>
+                </div>
+                <p class="text-blue-200 text-sm">
+                    © 2024 Hotel Hemera. Inspirado na deusa da luz. Todos os direitos reservados.
+                </p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script type="module" src="js/config.js"></script>
+    <script type="module" src="js/auth.js"></script>
+    
+    <script type="module">
+        // Aguardar carregamento do serviço de autenticação
+        await new Promise(resolve => {
+            if (window.authService) resolve()
+            else window.addEventListener('authServiceReady', resolve)
+        })
+
+        // --- Referências DOM ---
+        const registerForm = document.getElementById('register-form')
+        const errorMessage = document.getElementById('error-message')
+        const successMessage = document.getElementById('success-message')
+        const anonymousRegisterBtn = document.getElementById('anonymous-register-btn')
+        
+        // --- Funções ---
+        function showError(message) {
+            errorMessage.querySelector('p').textContent = message
+            errorMessage.classList.remove('hidden')
+            successMessage.classList.add('hidden')
+            setTimeout(() => {
+                errorMessage.classList.add('hidden')
+            }, 5000)
+        }
+        
+        function showSuccess(message) {
+            successMessage.querySelector('p').textContent = message
+            successMessage.classList.remove('hidden')
+            errorMessage.classList.add('hidden')
+        }
+        
+        function showInputError(input, message) {
+            input.classList.add('error')
+            const errorDiv = document.createElement('div')
+            errorDiv.className = 'text-red-600 text-xs mt-1'
+            errorDiv.textContent = message
+            input.parentNode.appendChild(errorDiv)
+            
+            setTimeout(() => {
+                input.classList.remove('error')
+                errorDiv.remove()
+            }, 3000)
+        }
+        
+        // --- Event Listeners ---
+        registerForm.addEventListener('submit', async (e) => {
+            e.preventDefault()
+            
+            const firstName = registerForm.first_name.value.trim()
+            const lastName = registerForm.last_name.value.trim()
+            const email = registerForm.email.value.trim()
+            const phone = registerForm.phone.value.trim()
+            const birthDate = registerForm.birth_date.value
+            const cpf = registerForm.cpf.value.trim()
+            const address = registerForm.address.value.trim()
+            const city = registerForm.city.value.trim()
+            const state = registerForm.state.value
+            const zipCode = registerForm.zip_code.value.trim()
+            const password = registerForm.password.value
+            const confirmPassword = registerForm.confirmPassword.value
+            
+            // Validações básicas
+            if (!firstName || firstName.length < 2) {
+                showInputError(registerForm.first_name, 'Por favor, insira seu primeiro nome (mínimo 2 caracteres)')
+                return
+            }
+            
+            if (!lastName || lastName.length < 2) {
+                showInputError(registerForm.last_name, 'Por favor, insira seu sobrenome (mínimo 2 caracteres)')
+                return
+            }
+            
+            if (!email) {
+                showInputError(registerForm.email, 'Por favor, insira seu email')
+                return
+            }
+            
+            // Validação básica de email
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+            if (!emailRegex.test(email)) {
+                showInputError(registerForm.email, 'Por favor, insira um email válido')
+                return
+            }
+            
+            if (!phone) {
+                showInputError(registerForm.phone, 'Por favor, insira seu telefone')
+                return
+            }
+            
+            if (!password || password.length < 6) {
+                showInputError(registerForm.password, 'A senha deve ter pelo menos 6 caracteres')
+                return
+            }
+            
+            if (password !== confirmPassword) {
+                showInputError(registerForm.confirmPassword, 'As senhas não coincidem')
+                return
+            }
+            
+            if (!registerForm.terms.checked) {
+                showError('Você deve concordar com os termos de serviço')
+                return
+            }
+            
+            try {
+                showSuccess('Criando sua conta... Por favor, aguarde.')
+                
+                // Registrar usuário com todos os dados
+                await window.authService.register(email, password, {
+                    first_name: firstName,
+                    last_name: lastName,
+                    telefone: phone,
+                    birth_date: birthDate,
+                    cpf: cpf,
+                    address: address,
+                    city: city,
+                    state: state,
+                    zip_code: zipCode,
+                    full_name: `${firstName} ${lastName}`
+                })
+                
+                // Registro bem-sucedido
+                showSuccess('Conta criada com sucesso! Redirecionando para login...')
+                
+                // Redirecionar para login após 2 segundos
+                setTimeout(() => {
+                    window.location.href = 'login.html'
+                }, 2000)
+                
+            } catch (error) {
+                console.error('Erro no cadastro:', error)
+                
+                let errorMessage = 'Erro ao criar conta. Por favor, tente novamente.'
+                
+                if (error.message.includes('already registered')) {
+                    errorMessage = 'Este email já está cadastrado. Tente fazer login.'
+                } else if (error.message.includes('network')) {
+                    errorMessage = 'Erro de conexão. Verifique sua internet.'
+                } else if (error.message.includes('weak')) {
+                    errorMessage = 'A senha é muito fraca. Use uma senha mais forte.'
+                }
+                
+                showError(errorMessage)
+            }
+        })
+        
+        // Login anônimo
+        anonymousRegisterBtn.addEventListener('click', async () => {
+            try {
+                await window.authService.loginAnonymously()
+                window.location.href = 'index.html'
+            } catch (error) {
+                console.error('Erro no login anônimo:', error)
+                showError('Erro ao fazer login como visitante. Por favor, tente novamente.')
+            }
+        })
+        
+        // Limpar mensagens de erro ao digitar
+        registerForm.first_name.addEventListener('input', () => {
+            errorMessage.classList.add('hidden')
+        })
+        
+        registerForm.last_name.addEventListener('input', () => {
+            errorMessage.classList.add('hidden')
+        })
+        
+        registerForm.email.addEventListener('input', () => {
+            errorMessage.classList.add('hidden')
+        })
+        
+        registerForm.phone.addEventListener('input', () => {
+            errorMessage.classList.add('hidden')
+        })
+        
+        registerForm.password.addEventListener('input', () => {
+            errorMessage.classList.add('hidden')
+        })
+        
+        registerForm.confirmPassword.addEventListener('input', () => {
+            errorMessage.classList.add('hidden')
+        })
+        
+        registerForm.cpf.addEventListener('input', () => {
+            errorMessage.classList.add('hidden')
+        })
+        
+        registerForm.address.addEventListener('input', () => {
+            errorMessage.classList.add('hidden')
+        })
+        
+        registerForm.city.addEventListener('input', () => {
+            errorMessage.classList.add('hidden')
+        })
+        
+        registerForm.state.addEventListener('change', () => {
+            errorMessage.classList.add('hidden')
+        })
+        
+        registerForm.zip_code.addEventListener('input', () => {
+            errorMessage.classList.add('hidden')
+        })
+    </script>
+
+</body>
+</html>
