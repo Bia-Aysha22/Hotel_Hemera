@@ -1,0 +1,228 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Import Google Fonts for luxury typography */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
+
+@layer base {
+  * {
+    @apply border-hemera-blue-200;
+  }
+  
+  body {
+    @apply bg-hemera-blue-50 text-hemera-navy-900;
+    font-family: 'Inter', system-ui, sans-serif;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+  
+  /* Luxury serif font for headings */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', serif;
+  }
+}
+
+@layer components {
+  /* Luxury Hotel Components */
+  .btn {
+    @apply inline-flex items-center justify-center rounded-lg text-sm font-medium transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-hemera-gold-500 focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none ring-offset-hemera-blue-50;
+  }
+  
+  .btn-primary {
+    @apply bg-gradient-to-r from-hemera-blue-600 to-hemera-blue-700 text-white hover:from-hemera-blue-700 hover:to-hemera-blue-800 focus:ring-hemera-blue-500 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5;
+  }
+  
+  .btn-secondary {
+    @apply bg-gradient-to-r from-hemera-gold-400 to-hemera-gold-500 text-hemera-navy-900 hover:from-hemera-gold-500 hover:to-hemera-gold-600 focus:ring-hemera-gold-500 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5;
+  }
+  
+  .btn-outline {
+    @apply border-2 border-hemera-gold-400 bg-transparent text-hemera-gold-600 hover:bg-hemera-gold-50 hover:border-hemera-gold-500 focus:ring-hemera-gold-500;
+  }
+  
+  .btn-luxury {
+    @apply bg-gradient-to-r from-hemera-gold-300 via-hemera-light-200 to-hemera-gold-300 text-hemera-navy-800 hover:shadow-2xl hover:scale-105 transition-all duration-500 border border-hemera-gold-400;
+  }
+  
+  .input {
+    @apply flex h-12 w-full rounded-lg border-2 border-hemera-blue-200 bg-white px-4 py-3 text-base ring-offset-hemera-blue-50 file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-hemera-blue-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-hemera-gold-500 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 transition-all duration-200;
+  }
+  
+  .card {
+    @apply rounded-xl border border-hemera-blue-100 bg-white text-hemera-navy-900 shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden;
+  }
+  
+  .card-luxury {
+    @apply rounded-2xl border-2 border-hemera-gold-200 bg-gradient-to-br from-white to-hemera-light-50 text-hemera-navy-900 shadow-2xl hover:shadow-3xl transition-all duration-500 overflow-hidden;
+  }
+  
+  .form-group {
+    @apply space-y-3;
+  }
+  
+  .form-label {
+    @apply text-sm font-semibold text-hemera-navy-700 leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70;
+  }
+  
+  .form-error {
+    @apply text-sm text-red-600 font-medium;
+  }
+  
+  .form-success {
+    @apply text-sm text-green-600 font-medium;
+  }
+  
+  /* Luxury Hotel Specific Components */
+  .hero-overlay {
+    @apply absolute inset-0 bg-gradient-to-br from-hemera-navy-900/60 via-hemera-blue-900/40 to-hemera-gold-900/30;
+  }
+  
+  .luxury-text-gradient {
+    @apply bg-gradient-to-r from-hemera-gold-400 via-hemera-light-300 to-hemera-gold-500 bg-clip-text text-transparent;
+  }
+  
+  .divine-glow {
+    @apply relative overflow-hidden;
+  }
+  
+  .divine-glow::before {
+    content: '';
+    @apply absolute inset-0 bg-gradient-to-r from-hemera-gold-200/20 via-hemera-light-100/30 to-hemera-gold-200/20 animate-pulse;
+  }
+  
+  .mythology-pattern {
+    background-image: radial-gradient(circle at 25% 25%, rgba(250, 173, 20, 0.1) 0%, transparent 50%),
+                      radial-gradient(circle at 75% 75%, rgba(22, 119, 255, 0.1) 0%, transparent 50%);
+  }
+}
+
+/* Luxury Hotel Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(250, 173, 20, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(250, 173, 20, 0.6);
+  }
+}
+
+@keyframes aurora {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s ease-out;
+}
+
+.animate-shimmer {
+  background: linear-gradient(90deg, transparent, rgba(250, 173, 20, 0.2), transparent);
+  background-size: 1000px 100%;
+  animation: shimmer 3s infinite;
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-glow {
+  animation: glow 2s ease-in-out infinite;
+}
+
+.animate-aurora {
+  background: linear-gradient(45deg, #1677ff, #faad14, #1677ff);
+  background-size: 400% 400%;
+  animation: aurora 8s ease infinite;
+}
+
+/* Hemera (Goddess of Light) Effects */
+.hemera-glow {
+  position: relative;
+}
+
+.hemera-glow::after {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, #1677ff, #faad14, #1677ff);
+  border-radius: inherit;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.hemera-glow:hover::after {
+  opacity: 1;
+}
+
+/* Luxury scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: linear-gradient(to bottom, #f0f5ff, #fffbe6);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #1677ff, #faad14);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, #0958d9, #d48806);
+}
+
+/* Responsive typography for luxury feel */
+@media (max-width: 768px) {
+  .luxury-heading {
+    font-size: 2.5rem;
+    line-height: 1.2;
+  }
+}
+
+@media (min-width: 769px) {
+  .luxury-heading {
+    font-size: 4rem;
+    line-height: 1.1;
+  }
+}

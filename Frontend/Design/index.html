@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hemera - Luxe Haven</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'hemera-blue': '#0F3D7A',
+                        'hemera-blue-mid': '#0F3D7A',
+                        'hemera-blue-dark': '#0B2D5B',
+                        'hemera-gold': '#FFD700',
+                        'hemera-white': '#FFFFFF',
+                        'hemera-yellow-light': '#FFDF00',
+                        'hemera-light': '#F8F5F0',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        :root {
+            --hemera-blue-mid: #0F3D7A; /* azul-medio */
+            --hemera-blue-dark: #0B2D5B; /* azul-escuro */
+            --hemera-gold: #FFD700;     /* dourado principal */
+            --hemera-gold-metal: #D3AF37; /* dourado metálico */
+            --hemera-gold-rod: #DAA520;  /* goldenrod */
+            --hemera-white: #FFFFFF;    /* branco */
+            --hemera-yellow-light: #FFDF00; /* amarelo dourado */
+            --hemera-brown: #6b4a3b; /* botão reserva */
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Raleway:wght@300;400;600&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <style>
+        .font-playfair {
+            font-family: 'Playfair Display', serif;
+        }
+        .font-raleway {
+            font-family: 'Raleway', sans-serif;
+        }
+        .hero-gradient {
+            background: linear-gradient(to bottom, rgba(15, 61, 122, 0.8), rgba(15, 61, 122, 0.5));
+        }
+        .gold-border {
+            border-color: #D4AF37;
+        }
+        .gold-text {
+            color: #D4AF37;
+        }
+        /* Interações de imagem e scroll */
+        .image-zoom { transition: transform 300ms ease; will-change: transform; }
+        .image-zoom:hover { transform: scale(1.05); }
+        .float-up { transform: translateY(24px); opacity: 0; transition: transform 600ms ease, opacity 600ms ease; }
+        .float-up.revealed { transform: translateY(0); opacity: 1; }
+        .room-card { transform: translateY(24px); opacity: 0; transition: transform 600ms ease, opacity 600ms ease; }
+        .room-card.revealed { transform: translateY(0); opacity: 1; }
+    </style>
+</head>
+<body class="font-raleway bg-hemera-light">
+    <!-- Header Component -->
+    <custom-header></custom-header>
+
+    <!-- Hero Section -->
+    <section class="relative h-screen flex items-center justify-center bg-gray-900 overflow-hidden">
+        <img src="img/hero.jpg" alt="Hotel View" class="absolute inset-0 w-full h-full object-cover">
+        <div class="absolute inset-0 hero-gradient"></div>
+        <div class="relative z-10 text-center px-4 max-w-4xl mx-auto">
+            <h1 class="font-playfair text-5xl md:text-7xl text-white mb-6">Hemera</h1>
+            <p class="text-xl md:text-2xl text-white mb-8">Onde a luz da deusa encontra o luxo moderno</p>
+            <a href="#rooms" class="px-8 py-3 bg-hemera-gold text-hemera-blue font-bold rounded-md hover:bg-opacity-90 transition duration-300">Explore Nossos Quartos</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="py-20 px-4">
+        <div class="max-w-6xl mx-auto">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0 md:pr-10">
+                    <h2 class="font-playfair text-3xl md:text-4xl text-hemera-blue mb-6">Inspirado na Deusa da Luz</h2>
+                    <p class="text-gray-700 mb-6">O Hemera Luxe Haven oferece uma experiência única onde o luxo contemporâneo encontra a mitologia grega. Nosso hotel foi meticulosamente projetado para refletir a elegância e brilho de Hemera, a deusa primordial da luz do dia.</p>
+                    <p class="text-gray-700">Cada detalhe, desde nossa arquitetura até nosso serviço impecável, foi pensado para iluminar sua estadia com conforto e sofisticação incomparáveis.</p>
+                </div>
+                <div class="md:w-1/2">
+                    <img src="img/about.jpg" alt="Hotel Lobby" class="w-full h-96 object-cover rounded-lg shadow-xl image-zoom float-up">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rooms Section (Carrossel com imagem + texto lado a lado) -->
+    <section id="rooms" class="py-20 bg-hemera-blue text-white px-4">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="font-playfair text-3xl md:text-4xl text-center mb-16">Nossos Quartos, Passeios & Ofertas</h2>
+
+            <!-- Carrossel -->
+            <div id="rooms-carousel" class="relative overflow-hidden rounded-xl">
+                <!-- Slides wrapper -->
+                <div class="slides flex transition-transform duration-500 ease-out">
+                    <!-- Slide 1: Texto à esquerda, imagem à direita -->
+                    <div class="slide min-w-full px-2">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                            <!-- Texto -->
+                            <div>
+                                <h3 class="font-playfair text-2xl md:text-3xl mb-2">Suíte Amanhecer</h3>
+                                <p class="text-hemera-yellow-light font-semibold mb-4">A partir de R$ 690/noite</p>
+                                <p class="text-white/90 mb-6">Conforto inspirado na luz da manhã, vista para o mar e acabamentos em dourado. Ideal para casais e estadias românticas.</p>
+                                <div class="flex gap-3">
+                                    <a href="login.html" class="px-5 py-2 bg-hemera-gold text-hemera-blue font-bold rounded-md hover:bg-opacity-90">Reservar</a>
+                                    <a href="#contact" class="px-5 py-2 border-2 border-hemera-gold text-hemera-gold font-bold rounded-md hover:bg-hemera-gold hover:text-hemera-blue">Falar com Concierge</a>
+                                </div>
+                            </div>
+                            <!-- Imagem -->
+                            <div class="relative group">
+                                <img src="img/room1.png" alt="Suíte Amanhecer" class="w-full h-96 object-cover rounded-lg shadow-xl image-zoom">
+                                <span class="absolute top-3 left-3 px-2.5 py-1 text-xs font-bold rounded bg-hemera-gold text-hemera-blue shadow">Promoção</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 2: Imagem à esquerda, texto à direita -->
+                    <div class="slide min-w-full px-2">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                            <!-- Imagem -->
+                            <div class="relative group order-1 md:order-none">
+                                <img src="img/ao-por-do-sol-na-praia-tropical-e-no-mar-com-coqueiro_74190-1075.jpeg" alt="Passeio Aurora à Beira-Mar" class="w-full h-96 object-cover rounded-lg shadow-xl image-zoom">
+                                <span class="absolute top-3 left-3 px-2.5 py-1 text-xs font-bold rounded bg-hemera-gold text-hemera-blue shadow">Promoção</span>
+                            </div>
+                            <!-- Texto -->
+                            <div>
+                                <h3 class="font-playfair text-2xl md:text-3xl mb-2">Passeio Aurora à Beira-Mar</h3>
+                                <p class="text-hemera-yellow-light font-semibold mb-4">R$ 220/pessoa</p>
+                                <p class="text-white/90 mb-6">Experiência guiada ao amanhecer, com paisagens deslumbrantes e momentos de contemplação. Inclui welcome drink e fotos profissionais.</p>
+                                <div class="flex gap-3">
+                                    <a href="login.html" class="px-5 py-2 bg-hemera-gold text-hemera-blue font-bold rounded-md hover:bg-opacity-90">Reservar</a>
+                                    <a href="#contact" class="px-5 py-2 border-2 border-hemera-gold text-hemera-gold font-bold rounded-md hover:bg-hemera-gold hover:text-hemera-blue">Ver detalhes</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 3: Imagem à direita, texto à esquerda (gastronomia) -->
+                    <div class="slide min-w-full px-2">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                            <!-- Texto -->
+                            <div>
+                                <h3 class="font-playfair text-2xl md:text-3xl mb-2">Banquete de Hemera</h3>
+                                <p class="text-hemera-yellow-light font-semibold mb-4">Menu degustação R$ 350/pessoa</p>
+                                <p class="text-white/90 mb-6">Sabores do Hemera com ingredientes locais e apresentação autoral. Harmonização com vinhos selecionados.</p>
+                                <div class="flex gap-3">
+                                    <a href="login.html" class="px-5 py-2 bg-hemera-gold text-hemera-blue font-bold rounded-md hover:bg-opacity-90">Reservar</a>
+                                    <a href="#contact" class="px-5 py-2 border-2 border-hemera-gold text-hemera-gold font-bold rounded-md hover:bg-hemera-gold hover:text-hemera-blue">Ver cardápio</a>
+                                </div>
+                            </div>
+                            <!-- Imagem -->
+                            <div class="relative group">
+                                <img src="img/69793506-por-do-sol-frutos-do-mar-bufe-ao-ar-livre-evento-refeicoes-servico-gratis-foto.jpg" alt="Banquete de Hemera" class="w-full h-96 object-cover rounded-lg shadow-xl image-zoom">
+                                <span class="absolute top-3 left-3 px-2.5 py-1 text-xs font-bold rounded bg-hemera-gold text-hemera-blue shadow">Promoção</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Controles -->
+                <button type="button" aria-label="Anterior" data-carousel-prev class="absolute left-2 top-1/2 -translate-y-1/2 bg-white/80 text-hemera-blue rounded-full p-2 shadow hover:bg-white">
+                    <i data-feather="chevron-left"></i>
+                </button>
+                <button type="button" aria-label="Próximo" data-carousel-next class="absolute right-2 top-1/2 -translate-y-1/2 bg-white/80 text-hemera-blue rounded-full p-2 shadow hover:bg-white">
+                    <i data-feather="chevron-right"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Amenities Section -->
+    <section class="py-20 px-4">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="font-playfair text-3xl md:text-4xl text-hemera-blue text-center mb-16">Nossas Comodidades</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Spa -->
+                <div class="text-center p-6 rounded-lg border-2 border-hemera-blue hover:shadow-xl transition duration-300">
+                    <div class="bg-hemera-blue rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6">
+                        <i data-feather="activity" class="text-white text-2xl"></i>
+                    </div>
+                    <h3 class="font-playfair text-xl text-hemera-blue mb-4">Spa Hemera</h3>
+                    <p class="text-gray-700">Um santuário de bem-estar com tratamentos inspirados nos rituais de beleza das deusas gregas.</p>
+                </div>
+                
+                <!-- Restaurant -->
+                <div class="text-center p-6 rounded-lg border-2 border-hemera-blue hover:shadow-xl transition duration-300">
+                    <div class="bg-hemera-blue rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6">
+                        <i data-feather="coffee" class="text-white text-2xl"></i>
+                    </div>
+                    <h3 class="font-playfair text-xl text-hemera-blue mb-4">Restaurante Aurum</h3>
+                    <p class="text-gray-700">Gastronomia premiada com ingredientes locais e apresentação artística em nosso restaurante gourmet.</p>
+                </div>
+                
+                <!-- Pool -->
+                <div class="text-center p-6 rounded-lg border-2 border-hemera-blue hover:shadow-xl transition duration-300">
+                    <div class="bg-hemera-blue rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6">
+                        <i data-feather="droplet" class="text-white text-2xl"></i>
+                    </div>
+                    <h3 class="font-playfair text-xl text-hemera-blue mb-4">Piscina Infinita</h3>
+                    <p class="text-gray-700">Nossa piscina de borda infinita parece fundir-se com o horizonte, oferecendo vistas deslumbrantes.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-20 bg-gray-100 px-4">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="font-playfair text-3xl md:text-4xl text-hemera-blue text-center mb-16">O Que Nossos Hóspedes Dizem</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="flex items-center gold-text mr-2">
+                            <i data-feather="star" class="fill-current"></i>
+                            <i data-feather="star" class="fill-current"></i>
+                            <i data-feather="star" class="fill-current"></i>
+                            <i data-feather="star" class="fill-current"></i>
+                            <i data-feather="star" class="fill-current"></i>
+                        </div>
+                        <span class="text-gray-700">2 semanas atrás</span>
+                    </div>
+                    <p class="text-gray-700 italic mb-4">"A Suíte Presidencial superou todas as expectativas. O serviço foi impecável e a vista ao nascer do sol é indescritível!"</p>
+                    <div class="flex items-center">
+                        <img src="http://static.photos/people/80x80/1" alt="Guest" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-bold text-hemera-blue">Ana Carolina</h4>
+                            <p class="text-gray-600">São Paulo, Brasil</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 2 -->
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="flex items-center gold-text mr-2">
+                            <i data-feather="star" class="fill-current"></i>
+                            <i data-feather="star" class="fill-current"></i>
+                            <i data-feather="star" class="fill-current"></i>
+                            <i data-feather="star" class="fill-current"></i>
+                            <i data-feather="star" class="fill-current"></i>
+                        </div>
+                        <span class="text-gray-700">1 mês atrás</span>
+                    </div>
+                    <p class="text-gray-700 italic mb-4">"O Spa Hemera é simplesmente divino. Os tratamentos com óleos aromáticos me transportaram para o Olimpo!"</p>
+                    <div class="flex items-center">
+                        <img src="http://static.photos/people/80x80/2" alt="Guest" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-bold text-hemera-blue">Pierre Dubois</h4>
+                            <p class="text-gray-600">Paris, França</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 3 -->
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="flex items-center gold-text mr-2">
+                            <i data-feather="star" class="fill-current"></i>
+                            <i data-feather="star" class="fill-current"></i>
+                            <i data-feather="star" class="fill-current"></i>
+                            <i data-feather="star" class="fill-current"></i>
+                            <i data-feather="star" class="fill-current"></i>
+                        </div>
+                        <span class="text-gray-700">3 dias atrás</span>
+                    </div>
+                    <p class="text-gray-700 italic mb-4">"Celebramos nosso aniversário de casamento no Restaurante Aurum. A equipe criou uma experiência mágica que nunca esqueceremos."</p>
+                    <div class="flex items-center">
+                        <img src="http://static.photos/people/80x80/3" alt="Guest" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-bold text-hemera-blue">Maria & João</h4>
+                            <p class="text-gray-600">Lisboa, Portugal</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Galeria Hemera (carrossel) -->
+    <section class="py-20 px-4 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="font-playfair text-3xl md:text-4xl text-hemera-blue text-center mb-16">Galeria Hemera</h2>
+            <div id="gallery-carousel" class="relative overflow-hidden rounded-xl hemera-carousel">
+                <div class="slides flex transition-transform duration-500 ease-out">
+                    <!-- Slide A: Suíte Lúmen -->
+                    <div class="slide min-w-full px-2">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                            <div>
+                                <h3 class="font-playfair text-2xl md:text-3xl mb-2">Suíte Lúmen</h3>
+                                <p class="text-hemera-blue/80 mb-4">A partir de R$ 710/noite</p>
+                                <p class="text-gray-700 mb-6">Suíte iluminada por tons dourados, com vista mar e design contemporâneo inspirado na luz de Hemera.</p>
+                                <div class="flex gap-3">
+                                    <a href="login.html" class="px-5 py-2 bg-hemera-gold text-hemera-blue font-bold rounded-md hover:bg-opacity-90">Reservar</a>
+                                    <a href="#contact" class="px-5 py-2 border-2 border-hemera-gold text-hemera-blue font-bold rounded-md hover:bg-hemera-gold hover:text-hemera-blue">Detalhes</a>
+                                </div>
+                            </div>
+                            <div class="relative group">
+                                <img src="img/room2.jpg" alt="Suíte Lúmen" class="w-full h-96 object-cover rounded-lg shadow-xl image-zoom">
+                                <span class="absolute top-3 left-3 px-2.5 py-1 text-xs font-bold rounded bg-hemera-gold text-hemera-blue shadow">Promoção</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Slide B: Aurora à Beira-Mar -->
+                    <div class="slide min-w-full px-2">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                            <div class="relative group order-1 md:order-none">
+                                <img src="img/pngtree-evening-sunset-plants-outdoor-scenery-hd-image_829885.jpg" alt="Aurora à Beira-Mar" class="w-full h-96 object-cover rounded-lg shadow-xl image-zoom">
+                                <span class="absolute top-3 left-3 px-2.5 py-1 text-xs font-bold rounded bg-hemera-gold text-hemera-blue shadow">Promoção</span>
+                            </div>
+                            <div>
+                                <h3 class="font-playfair text-2xl md:text-3xl mb-2">Passeio Luz do Nascente</h3>
+                                <p class="text-hemera-blue/80 mb-4">R$ 240/pessoa</p>
+                                <p class="text-gray-700 mb-6">Caminhada guiada ao amanhecer em nossa praia, celebrando a primeira luz do dia, com fotos e welcome drink.</p>
+                                <div class="flex gap-3">
+                                    <a href="login.html" class="px-5 py-2 bg-hemera-gold text-hemera-blue font-bold rounded-md hover:bg-opacity-90">Reservar</a>
+                                    <a href="#contact" class="px-5 py-2 border-2 border-hemera-gold text-hemera-blue font-bold rounded-md hover:bg-hemera-gold hover:text-hemera-blue">Ver detalhes</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Slide C: Degustação Luminar -->
+                    <div class="slide min-w-full px-2">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                            <div>
+                                <h3 class="font-playfair text-2xl md:text-3xl mb-2">Banquete Luminar</h3>
+                                <p class="text-hemera-blue/80 mb-4">Menu degustação R$ 360/pessoa</p>
+                                <p class="text-gray-700 mb-6">Experiência gastronômica com sabores locais e apresentação áurea, inspirada no brilho de Hemera.</p>
+                                <div class="flex gap-3">
+                                    <a href="login.html" class="px-5 py-2 bg-hemera-gold text-hemera-blue font-bold rounded-md hover:bg-opacity-90">Reservar</a>
+                                    <a href="#contact" class="px-5 py-2 border-2 border-hemera-gold text-hemera-blue font-bold rounded-md hover:bg-hemera-gold hover:text-hemera-blue">Ver cardápio</a>
+                                </div>
+                            </div>
+                            <div class="relative group">
+                                <img src="img/69793506-por-do-sol-frutos-do-mar-bufe-ao-ar-livre-evento-refeicoes-servico-gratis-foto.jpg" alt="Banquete Luminar" class="w-full h-96 object-cover rounded-lg shadow-xl image-zoom">
+                                <span class="absolute top-3 left-3 px-2.5 py-1 text-xs font-bold rounded bg-hemera-gold text-hemera-blue shadow">Promoção</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Controles -->
+                <button type="button" aria-label="Anterior" data-carousel-prev class="absolute left-2 top-1/2 -translate-y-1/2 bg-white/80 text-hemera-blue rounded-full p-2 shadow hover:bg-white">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-left"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                </button>
+                <button type="button" aria-label="Próximo" data-carousel-next class="absolute right-2 top-1/2 -translate-y-1/2 bg-white/80 text-hemera-blue rounded-full p-2 shadow hover:bg-white">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Explorar Hemera (carrossel) -->
+    <section class="py-20 px-4 bg-hemera-light">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="font-playfair text-3xl md:text-4xl text-hemera-blue text-center mb-16">Explorar Hemera</h2>
+            <div id="explore-carousel" class="relative overflow-hidden rounded-xl hemera-carousel">
+                <div class="slides flex transition-transform duration-500 ease-out">
+                    <!-- Slide 1: Suíte Alvorada -->
+                    <div class="slide min-w-full px-2">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                            <div>
+                                <h3 class="font-playfair text-2xl md:text-3xl mb-2">Suíte Alvorada</h3>
+                                <p class="text-hemera-blue/80 mb-4">A partir de R$ 740/noite</p>
+                                <p class="text-gray-700 mb-6">Ambiente sereno com luz matinal e mar ao horizonte, inspirações na deusa da aurora.</p>
+                                <div class="flex gap-3">
+                                    <a href="login.html" class="px-5 py-2 bg-hemera-gold text-hemera-blue font-bold rounded-md hover:bg-opacity-90">Reservar</a>
+                                    <a href="#contact" class="px-5 py-2 border-2 border-hemera-gold text-hemera-blue font-bold rounded-md hover:bg-hemera-gold hover:text-hemera-blue">Detalhes</a>
+                                </div>
+                            </div>
+                            <div class="relative group">
+                                <img src="img/um-quarto-com-vista-para-o-mar-e-o-sol-se-pondo-no-horizonte_765582-1893.png" alt="Suíte Alvorada" class="w-full h-96 object-cover rounded-lg shadow-xl image-zoom">
+                                <span class="absolute top-3 left-3 px-2.5 py-1 text-xs font-bold rounded bg-hemera-gold text-hemera-blue shadow">Promoção</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Slide 2: Claridade Marinha -->
+                    <div class="slide min-w-full px-2">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                            <div class="relative group order-1 md:order-none">
+                                <img src="img/ao-por-do-sol-na-praia-tropical-e-no-mar-com-coqueiro_74190-1075.jpeg" alt="Claridade Marinha" class="w-full h-96 object-cover rounded-lg shadow-xl image-zoom">
+                                <span class="absolute top-3 left-3 px-2.5 py-1 text-xs font-bold rounded bg-hemera-gold text-hemera-blue shadow">Promoção</span>
+                            </div>
+                            <div>
+                                <h3 class="font-playfair text-2xl md:text-3xl mb-2">Passeio Claridade Marinha</h3>
+                                <p class="text-hemera-blue/80 mb-4">R$ 260/pessoa</p>
+                                <p class="text-gray-700 mb-6">Trilha costeira ao nascer do dia com contemplação e registros fotográficos à luz dourada.</p>
+                                <div class="flex gap-3">
+                                    <a href="login.html" class="px-5 py-2 bg-hemera-gold text-hemera-blue font-bold rounded-md hover:bg-opacity-90">Reservar</a>
+                                    <a href="#contact" class="px-5 py-2 border-2 border-hemera-gold text-hemera-blue font-bold rounded-md hover:bg-hemera-gold hover:text-hemera-blue">Ver detalhes</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Slide 3: Mesa Dourada -->
+                    <div class="slide min-w-full px-2">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                            <div>
+                                <h3 class="font-playfair text-2xl md:text-3xl mb-2">Mesa Dourada</h3>
+                                <p class="text-hemera-blue/80 mb-4">Degustação R$ 380/pessoa</p>
+                                <p class="text-gray-700 mb-6">Seleção de pratos com brilho áureo e ingredientes locais, harmonização opcional.</p>
+                                <div class="flex gap-3">
+                                    <a href="login.html" class="px-5 py-2 bg-hemera-gold text-hemera-blue font-bold rounded-md hover:bg-opacity-90">Reservar</a>
+                                    <a href="#contact" class="px-5 py-2 border-2 border-hemera-gold text-hemera-blue font-bold rounded-md hover:bg-hemera-gold hover:text-hemera-blue">Ver cardápio</a>
+                                </div>
+                            </div>
+                            <div class="relative group">
+                                <img src="img/buffet-ao-ar-livre-mesa-com-canapes-e-copos-no-fundo-das-arvores-floridas-e-do-ceu_533998-5407.png" alt="Mesa Dourada" class="w-full h-96 object-cover rounded-lg shadow-xl image-zoom">
+                                <span class="absolute top-3 left-3 px-2.5 py-1 text-xs font-bold rounded bg-hemera-gold text-hemera-blue shadow">Promoção</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Controles -->
+                <button type="button" aria-label="Anterior" data-carousel-prev class="absolute left-2 top-1/2 -translate-y-1/2 bg-white/80 text-hemera-blue rounded-full p-2 shadow hover:bg-white">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-left"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                </button>
+                <button type="button" aria-label="Próximo" data-carousel-next class="absolute right-2 top-1/2 -translate-y-1/2 bg-white/80 text-hemera-blue rounded-full p-2 shadow hover:bg-white">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact CTA -->
+    <section class="py-20 bg-hemera-blue text-white px-4">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="font-playfair text-3xl md:text-4xl mb-6">Pronto para uma Experiência Divina?</h2>
+            <p class="text-xl mb-8">Nossa equipe está pronta para tornar sua estadia inesquecível. Entre em contato ou reserve diretamente.</p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="tel:+351123456789" class="px-8 py-3 bg-hemera-gold text-hemera-blue font-bold rounded-md hover:bg-opacity-90 transition duration-300 flex items-center justify-center">
+                    <i data-feather="phone" class="mr-2"></i> Ligar Agora
+                </a>
+                <a href="mailto:reservas@hemera.com" class="px-8 py-3 border-2 border-hemera-gold text-hemera-gold font-bold rounded-md hover:bg-hemera-gold hover:text-hemera-blue transition duration-300 flex items-center justify-center">
+                    <i data-feather="mail" class="mr-2"></i> Enviar Email
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Component -->
+    <custom-footer></custom-footer>
+
+    <!-- Auth Modal removido: Login/Cadastro em páginas dedicadas -->
+
+    <!-- Scripts -->
+    <script>
+        // Base da API para autenticação (ajuste se necessário)
+        window.HEMERA_API_URL = window.HEMERA_API_URL || 'http://localhost:3000/api';
+    </script>
+    <script src="utils/session.js"></script>
+    <script src="components/header.js"></script>
+    <script src="components/footer.js"></script>
+    <!-- Modal removido -->
+    <script src="script.js"></script>
+    <script>
+        feather.replace();
+    </script>
+<script src="https://huggingface.co/deepsite/deepsite-badge.js"></script>
+</body>
+</html>

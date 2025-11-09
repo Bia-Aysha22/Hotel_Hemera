@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login • Hemera</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'hemera-blue': '#0F3D7A',
+            'hemera-blue-mid': '#0F3D7A',
+            'hemera-blue-dark': '#0B2D5B',
+            'hemera-gold': '#FFD700',
+            'hemera-white': '#FFFFFF',
+            'hemera-yellow-light': '#FFDF00',
+            'hemera-light': '#F8F5F0',
+          }
+        }
+      }
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Raleway:wght@300;400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .font-playfair { font-family: 'Playfair Display', serif; }
+    .font-raleway { font-family: 'Raleway', sans-serif; }
+  </style>
+</head>
+<body class="font-raleway bg-hemera-light min-h-screen">
+  <custom-header></custom-header>
+  <main class="page-bg theme-gold-basic min-h-screen pt-24 pb-16 flex items-center justify-center px-4">
+    <div class="card bg-white/95 rounded-xl shadow-2xl w-full max-w-md p-8">
+      <h1 class="font-playfair text-3xl text-hemera-blue mb-6 text-center">Entrar</h1>
+      <p class="text-center text-gray-700 mb-6">Acesse sua conta para reservar e gerenciar sua estadia.</p>
+      <form id="login-form" class="space-y-4">
+        <div>
+          <label class="block text-sm mb-1">Email</label>
+          <input name="email" type="email" class="input w-full border rounded px-3 py-2" placeholder="voce@exemplo.com" required />
+        </div>
+        <div>
+          <label class="block text-sm mb-1">Senha</label>
+          <input name="senha" type="password" class="input w-full border rounded px-3 py-2" placeholder="••••••" required />
+        </div>
+        <button type="submit" class="btn-primary w-full px-4 py-2 rounded">Entrar</button>
+      </form>
+      <p id="login-msg" class="hidden mt-4 text-center text-sm"></p>
+      <p class="mt-6 text-center">Não tem conta? <a href="/register.html" class="text-hemera-gold font-semibold">Cadastre-se</a></p>
+    </div>
+  </main>
+  <custom-footer></custom-footer>
+
+  <script>
+    window.HEMERA_API_URL = window.HEMERA_API_URL || 'http://localhost:3000/api';
+  </script>
+  <script src="utils/session.js"></script>
+  <script src="components/header.js"></script>
+  <script src="components/footer.js"></script>
+  <script>
+    const form = document.getElementById('login-form');
+    const msg = document.getElementById('login-msg');
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      msg.classList.add('hidden');
+      const email = form.email.value.trim();
+      const senha = form.senha.value;
+      try {
+        const res = await fetch(`${window.HEMERA_API_URL}/auth/login`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, senha })
+        });
+        const data = await res.json();
+        if (!res.ok || data.success === false) throw new Error(data.message || 'Falha no login');
+        if (window.hemeraAuth) window.hemeraAuth.setSession(data.token, data.user);
+        msg.textContent = 'Login realizado com sucesso!';
+        msg.classList.remove('hidden');
+        msg.className = 'mt-4 text-center text-sm text-green-700';
+        setTimeout(() => { window.location.href = '/'; }, 800);
+      } catch (err) {
+        msg.textContent = err.message || 'Erro inesperado ao entrar.';
+        msg.classList.remove('hidden');
+        msg.className = 'mt-4 text-center text-sm text-red-600';
+      }
+    });
+  </script>
+</body>
+</html>
