@@ -11,8 +11,8 @@ const HeroCarousel = () => {
       id: 1,
       title: "Hotel Hemera",
       subtitle: "Luxo e Conforto em Cada Detalhe",
-      description: "Descubra uma experiência única de hospitalidade com nossos quartos elegantes, serviços premium e localização privilegiada no coração da cidade.",
-      image: "bg-gradient-to-br from-amber-600 via-amber-700 to-amber-800",
+      description: "Descubra uma experiência única de hospitalidade com nossos quartos elegantes, serviços premium e localização privilegiada.",
+      imageUrl: "https://images.unsplash.com/photo-1552566626-52f8b828add9?q=80&w=1920&auto=format&fit=crop",
       icon: Star,
       features: ["Wi-Fi Grátis", "Estacionamento", "Piscina", "Restaurante"],
       cta: "Reservar Agora",
@@ -22,8 +22,8 @@ const HeroCarousel = () => {
       id: 2,
       title: "Suítes Presidenciais",
       subtitle: "O Máximo em Sofisticação",
-      description: "Experimente o luxo absoluto em nossas suítes presidenciais com vista panorâmica, serviço de mordomo e todas as comodidades que você merece.",
-      image: "bg-gradient-to-br from-purple-600 via-purple-700 to-purple-800",
+      description: "Luxo absoluto com vista panorâmica, serviço de mordomo e terraço privativo.",
+      imageUrl: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=1920&auto=format&fit=crop",
       icon: Waves,
       features: ["Vista Panorâmica", "Serviço de Mordomo", "Terraço Privativo", "Chef Particular"],
       cta: "Ver Suítes",
@@ -33,8 +33,8 @@ const HeroCarousel = () => {
       id: 3,
       title: "Experiência Premium",
       subtitle: "Serviços Exclusivos para Você",
-      description: "Desfrute de nossos serviços premium incluindo spa, academia, restaurante gourmet e concierge 24h para tornar sua estadia inesquecível.",
-      image: "bg-gradient-to-br from-emerald-600 via-emerald-700 to-emerald-800",
+      description: "Spa, academia, restaurante gourmet e concierge 24h para uma estadia inesquecível.",
+      imageUrl: "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=1920&auto=format&fit=crop",
       icon: Coffee,
       features: ["Spa & Wellness", "Academia", "Restaurante Gourmet", "Concierge 24h"],
       cta: "Conhecer Serviços",
@@ -67,16 +67,16 @@ const HeroCarousel = () => {
   const IconComponent = currentSlideData.icon;
 
   return (
-    <div className="relative h-screen overflow-hidden">
-      {/* Background */}
-      <div className={`absolute inset-0 ${currentSlideData.image} transition-all duration-1000 ease-in-out`}>
-        <div className="absolute inset-0 bg-black/20"></div>
-        <div className="absolute inset-0 bg-gradient-to-r from-black/30 to-transparent"></div>
-        
-        {/* Animated background elements */}
-        <div className="absolute top-0 right-0 w-96 h-96 bg-white/5 rounded-full -translate-y-48 translate-x-48 animate-pulse"></div>
-        <div className="absolute bottom-0 left-0 w-80 h-80 bg-white/5 rounded-full translate-y-40 -translate-x-40 animate-pulse" style={{ animationDelay: '1s' }}></div>
-        <div className="absolute top-1/2 left-1/2 w-64 h-64 bg-white/5 rounded-full -translate-x-32 -translate-y-32 animate-pulse" style={{ animationDelay: '2s' }}></div>
+    <div className="relative h-[80vh] md:h-[90vh] overflow-hidden">
+      {/* Background image with parallax */}
+      <div className="absolute inset-0">
+        <img
+          src={currentSlideData.imageUrl}
+          alt={currentSlideData.title}
+          className="w-full h-full object-cover scale-105 animate-[zoomIn_10s_ease-in-out_infinite]"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-hemera-navy-900/70 via-hemera-navy-800/50 to-transparent"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-hemera-navy-900/50 to-transparent"></div>
       </div>
 
       {/* Content */}
@@ -86,18 +86,18 @@ const HeroCarousel = () => {
             <div className="animate-fade-in">
               {/* Icon */}
               <div className="flex justify-center mb-8">
-                <div className="p-6 bg-white/10 backdrop-blur-sm rounded-full border border-white/20">
-                  <IconComponent className="h-16 w-16 text-white" />
+                <div className="p-6 rounded-full border border-aurum-500/50 bg-aurum-500/10 backdrop-blur-sm shadow-3xl">
+                  <IconComponent className="h-16 w-16 text-aurum-400" />
                 </div>
               </div>
 
               {/* Title */}
-              <h1 className="font-display text-5xl md:text-6xl lg:text-7xl font-bold text-white text-center mb-6">
+              <h1 className="font-logo text-5xl md:text-6xl lg:text-7xl font-bold text-white text-center mb-6">
                 {currentSlideData.title}
               </h1>
 
               {/* Subtitle */}
-              <h2 className="text-2xl md:text-3xl lg:text-4xl text-primary-100 text-center mb-6">
+              <h2 className="text-2xl md:text-3xl lg:text-4xl text-hemera-blue-100 text-center mb-6">
                 {currentSlideData.subtitle}
               </h2>
 
@@ -123,13 +123,13 @@ const HeroCarousel = () => {
               {/* CTA Buttons */}
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link to={currentSlideData.link}>
-                  <Button className="px-8 py-4 text-lg font-semibold bg-white text-primary-600 hover:bg-white/90 transition-all duration-300 hover:scale-105">
+                  <Button className="px-8 py-4 text-lg font-semibold bg-aurum-500 text-hemera-navy-900 hover:bg-aurum-600 transition-all duration-300 hover:scale-105">
                     {currentSlideData.cta}
                   </Button>
                 </Link>
                 
                 <Link to="/login">
-                  <Button variant="outline" className="px-8 py-4 text-lg font-semibold border-white text-white hover:bg-white hover:text-primary-600 transition-all duration-300">
+                  <Button variant="outline" className="px-8 py-4 text-lg font-semibold border-hemera-blue-200 text-hemera-blue-100 hover:bg-hemera-blue-100 hover:text-hemera-navy-900 transition-all duration-300">
                     Fazer Login
                   </Button>
                 </Link>

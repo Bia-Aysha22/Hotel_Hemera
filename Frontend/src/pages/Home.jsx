@@ -2,10 +2,11 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import HeroCarousel from '../components/HeroCarousel';
+import ExperienceGallery from '../components/ExperienceGallery';
 import RoomCard from '../components/RoomCard';
 import Button from '../components/ui/Button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/Card';
-import { Star, Waves, Coffee, Car, Wifi, Utensils, Spa, Dumbbell, Concierge, ArrowRight } from 'lucide-react';
+import { Star, Waves, Coffee, Car, Wifi, Utensils, Flower2, Dumbbell, ConciergeBell, ArrowRight } from 'lucide-react';
 
 const Home = () => {
   const { isAuthenticated, user } = useAuth();
@@ -52,7 +53,7 @@ const Home = () => {
       id: 1,
       name: "Spa & Wellness",
       description: "Relaxe em nosso spa completo com tratamentos exclusivos e profissionais especializados.",
-      icon: Spa,
+      icon: Flower2,
       color: "text-pink-600",
       bgColor: "bg-pink-100",
       stats: "Tratamentos Premium"
@@ -79,7 +80,7 @@ const Home = () => {
       id: 4,
       name: "Concierge 24h",
       description: "Serviço personalizado para atender todas as suas necessidades durante a estadia.",
-      icon: Concierge,
+      icon: ConciergeBell,
       color: "text-purple-600",
       bgColor: "bg-purple-100",
       stats: "Atendimento Exclusivo"
@@ -101,6 +102,9 @@ const Home = () => {
       {/* Hero Carousel */}
       <HeroCarousel />
       
+      {/* Galeria de Experiências com animações */}
+      <ExperienceGallery />
+
       {/* Rooms Section */}
       <main className="container mx-auto px-4 py-16">
         <div className="text-center mb-16 animate-fade-in">

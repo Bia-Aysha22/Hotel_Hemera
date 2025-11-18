@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import { Toaster } from 'react-hot-toast';
 import { AuthProvider } from './contexts/AuthContext';
 import ProtectedRoute from './components/ProtectedRoute';
+import CustomHeader from './components/CustomHeader';
+import CustomFooter from './components/CustomFooter';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
@@ -14,6 +16,7 @@ function App() {
     <AuthProvider>
       <Router>
         <div className="App">
+          <CustomHeader />
           <Routes>
             {/* Rota pública - Home */}
             <Route path="/" element={<Home />} />
@@ -70,6 +73,7 @@ function App() {
               },
             }}
           />
+          <CustomFooter />
         </div>
       </Router>
     </AuthProvider>
