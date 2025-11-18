@@ -19,7 +19,8 @@ const Home = () => {
       description: "Conforto essencial com todas as comodidades básicas para uma estadia agradável.",
       price: 250,
       stars: 3,
-      category: "standard"
+      category: "standard",
+      image: "/Design/img/images.jpg"
     },
     {
       id: 2,
@@ -27,7 +28,8 @@ const Home = () => {
       description: "Espaço adicional e vista privilegiada da cidade com amenidades premium.",
       price: 350,
       stars: 4,
-      category: "standard"
+      category: "standard",
+      image: "/Design/img/images (1).jpg"
     },
     {
       id: 3,
@@ -35,7 +37,8 @@ const Home = () => {
       description: "Elegância refinada com área de estar separada e acabamentos de luxo.",
       price: 480,
       stars: 4,
-      category: "deluxe"
+      category: "deluxe",
+      image: "/Design/img/70273057-moderno-apartamento-vivo-quarto-as-por-do-sol-caloroso-brilho-e-cidade-visualizar-gratis-foto.jpg"
     },
     {
       id: 4,
@@ -43,7 +46,8 @@ const Home = () => {
       description: "Experiência superior com varanda privativa e serviço de quarto 24h.",
       price: 620,
       stars: 4,
-      category: "deluxe"
+      category: "deluxe",
+      image: "/Design/img/70716247-luxo-cobertura-vivo-quarto-com-panoramico-cidade-visao-as-por-do-sol-foto.jpg"
     }
   ];
 
@@ -139,27 +143,27 @@ const Home = () => {
           {services.map((service, index) => (
             <Card 
               key={service.id}
-              className="group hover:shadow-lg transition-all duration-300 hover:-translate-y-1 animate-fade-in"
+              className="group hover:shadow-2xl transition-all duration-500 hover:-translate-y-3 animate-fade-in cursor-pointer border-2 border-transparent hover:border-primary-300 overflow-hidden"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               <CardHeader className="text-center">
-                <div className={`w-16 h-16 mx-auto mb-4 ${service.bgColor} rounded-full flex items-center justify-center`}>
-                  <service.icon className={`h-8 w-8 ${service.color}`} />
+                <div className={`w-16 h-16 mx-auto mb-4 ${service.bgColor} rounded-full flex items-center justify-center transition-all duration-500 group-hover:scale-125 group-hover:rotate-12 group-hover:shadow-lg`}>
+                  <service.icon className={`h-8 w-8 ${service.color} transition-transform duration-500 group-hover:scale-110 group-hover:rotate-[-12deg]`} />
                 </div>
-                <CardTitle className="text-xl font-semibold text-secondary-900">
+                <CardTitle className="text-xl font-semibold text-secondary-900 transition-colors duration-300 group-hover:text-primary-600">
                   {service.name}
                 </CardTitle>
-                <CardDescription className="text-secondary-600">
+                <CardDescription className="text-secondary-600 transition-colors duration-300 group-hover:text-secondary-700">
                   {service.description}
                 </CardDescription>
               </CardHeader>
               <CardContent className="text-center">
-                <div className="text-2xl font-bold text-primary-600 mb-4">
+                <div className="text-2xl font-bold text-primary-600 mb-4 transition-all duration-300 group-hover:scale-110">
                   {service.stats}
                 </div>
-                <Button variant="outline" className="w-full">
+                <Button variant="outline" className="w-full transition-all duration-300 group-hover:bg-primary-600 group-hover:text-white group-hover:border-primary-600 group-hover:scale-105">
                   Saiba Mais
-                  <ArrowRight className="h-4 w-4 ml-2" />
+                  <ArrowRight className="h-4 w-4 ml-2 transition-transform duration-300 group-hover:translate-x-1" />
                 </Button>
               </CardContent>
             </Card>
@@ -179,22 +183,22 @@ const Home = () => {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {quickActions.map((action, index) => (
+              {quickActions?.map((action, index) => (
                 <Link key={action.title} to={action.action}>
                   <Card 
-                    className="group hover:shadow-lg transition-all duration-300 hover:-translate-y-1 cursor-pointer animate-fade-in"
+                    className="group hover:shadow-2xl transition-all duration-500 hover:-translate-y-3 cursor-pointer animate-fade-in border-2 border-transparent hover:border-primary-300"
                     style={{ animationDelay: `${index * 0.1}s` }}
                   >
                     <CardContent className="p-6">
                       <div className="flex items-center space-x-4">
-                        <div className={`p-3 rounded-lg ${action.bgColor}`}>
-                          <action.icon className={`h-6 w-6 ${action.color}`} />
+                        <div className={`p-3 rounded-lg ${action.bgColor} transition-all duration-500 group-hover:scale-125 group-hover:rotate-12 group-hover:shadow-lg`}>
+                          <action.icon className={`h-6 w-6 ${action.color} transition-transform duration-500 group-hover:scale-110 group-hover:rotate-[-12deg]`} />
                         </div>
                         <div>
-                          <h4 className="font-semibold text-secondary-900 group-hover:text-primary-600 transition-colors">
+                          <h4 className="font-semibold text-secondary-900 group-hover:text-primary-600 transition-colors duration-300">
                             {action.title}
                           </h4>
-                          <p className="text-sm text-secondary-600">
+                          <p className="text-sm text-secondary-600 transition-colors duration-300 group-hover:text-secondary-700">
                             {action.description}
                           </p>
                         </div>

@@ -54,24 +54,31 @@ const RoomCard = ({ room, onReserve }) => {
   ];
 
   return (
-    <Card className="group hover:shadow-xl transition-all duration-300 hover:-translate-y-2 overflow-hidden">
-      {/* Image Placeholder */}
-      <div className="relative h-48 bg-gradient-to-br from-primary-100 to-primary-200 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
-        <div className="absolute top-4 right-4">
-          <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${getCategoryColor(room.category)}`}>
+    <Card className="group hover:shadow-2xl transition-all duration-500 hover:-translate-y-3 overflow-hidden cursor-pointer border-2 border-transparent hover:border-primary-300">
+      {/* Image */}
+      <div className="relative h-48 bg-gradient-to-br from-primary-100 to-primary-200 overflow-hidden group/image">
+        {room.image ? (
+          <img
+            src={room.image}
+            alt={room.name}
+            className="w-full h-full object-cover transition-all duration-700 group-hover/image:scale-110 group-hover/image:brightness-110"
+          />
+        ) : (
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="text-6xl opacity-20">
+              {getCategoryIcon(room.category)}
+            </div>
+          </div>
+        )}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent group-hover:from-black/60 group-hover:via-black/20 transition-all duration-500"></div>
+        <div className="absolute top-4 right-4 transform transition-all duration-300 group-hover:scale-110 group-hover:rotate-6">
+          <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${getCategoryColor(room.category)} backdrop-blur-sm bg-opacity-90`}>
             {getCategoryIcon(room.category)} {room.category.toUpperCase()}
           </span>
         </div>
-        <div className="absolute bottom-4 left-4 text-white">
+        <div className="absolute bottom-4 left-4 text-white transform transition-all duration-300 group-hover:translate-y-[-5px]">
           <div className="flex items-center space-x-1">
             {renderStars(room.stars)}
-          </div>
-        </div>
-        {/* Placeholder for room image */}
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="text-6xl opacity-20">
-            {getCategoryIcon(room.category)}
           </div>
         </div>
       </div>
@@ -110,7 +117,7 @@ const RoomCard = ({ room, onReserve }) => {
           </div>
           <Button
             onClick={() => onReserve && onReserve(room)}
-            className="bg-primary-600 hover:bg-primary-700 text-white px-6 py-2"
+            className="bg-primary-600 hover:bg-primary-700 text-white px-6 py-2 transition-all duration-300 hover:scale-110 hover:shadow-lg transform"
           >
             Reservar
           </Button>

@@ -12,7 +12,7 @@ const HeroCarousel = () => {
       title: "Hotel Hemera",
       subtitle: "Luxo e Conforto em Cada Detalhe",
       description: "Descubra uma experiência única de hospitalidade com nossos quartos elegantes, serviços premium e localização privilegiada.",
-      imageUrl: "https://images.unsplash.com/photo-1552566626-52f8b828add9?q=80&w=1920&auto=format&fit=crop",
+      imageUrl: "/Design/img/8159433-praia-por-do-sol-relaxamento-piscina-em-um-luxuoso-hotel-resort-a-praia-em-por-do-sol-luz-praia-perfeita-.jpg",
       icon: Star,
       features: ["Wi-Fi Grátis", "Estacionamento", "Piscina", "Restaurante"],
       cta: "Reservar Agora",
@@ -23,7 +23,7 @@ const HeroCarousel = () => {
       title: "Suítes Presidenciais",
       subtitle: "O Máximo em Sofisticação",
       description: "Luxo absoluto com vista panorâmica, serviço de mordomo e terraço privativo.",
-      imageUrl: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=1920&auto=format&fit=crop",
+      imageUrl: "/Design/img/70716247-luxo-cobertura-vivo-quarto-com-panoramico-cidade-visao-as-por-do-sol-foto.jpg",
       icon: Waves,
       features: ["Vista Panorâmica", "Serviço de Mordomo", "Terraço Privativo", "Chef Particular"],
       cta: "Ver Suítes",
@@ -34,7 +34,7 @@ const HeroCarousel = () => {
       title: "Experiência Premium",
       subtitle: "Serviços Exclusivos para Você",
       description: "Spa, academia, restaurante gourmet e concierge 24h para uma estadia inesquecível.",
-      imageUrl: "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=1920&auto=format&fit=crop",
+      imageUrl: "/Design/img/70273057-moderno-apartamento-vivo-quarto-as-por-do-sol-caloroso-brilho-e-cidade-visualizar-gratis-foto.jpg",
       icon: Coffee,
       features: ["Spa & Wellness", "Academia", "Restaurante Gourmet", "Concierge 24h"],
       cta: "Conhecer Serviços",
@@ -69,13 +69,13 @@ const HeroCarousel = () => {
   return (
     <div className="relative h-[80vh] md:h-[90vh] overflow-hidden">
       {/* Background image with parallax */}
-      <div className="absolute inset-0">
+      <div className="absolute inset-0 group/image-container">
         <img
           src={currentSlideData.imageUrl}
           alt={currentSlideData.title}
-          className="w-full h-full object-cover scale-105 animate-[zoomIn_10s_ease-in-out_infinite]"
+          className="w-full h-full object-cover scale-105 animate-[zoomIn_10s_ease-in-out_infinite] transition-transform duration-700 group-hover/image-container:scale-110"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-hemera-navy-900/70 via-hemera-navy-800/50 to-transparent"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-hemera-navy-900/70 via-hemera-navy-800/50 to-transparent transition-opacity duration-500 group-hover/image-container:opacity-90"></div>
         <div className="absolute inset-0 bg-gradient-to-r from-hemera-navy-900/50 to-transparent"></div>
       </div>
 
@@ -86,8 +86,8 @@ const HeroCarousel = () => {
             <div className="animate-fade-in">
               {/* Icon */}
               <div className="flex justify-center mb-8">
-                <div className="p-6 rounded-full border border-aurum-500/50 bg-aurum-500/10 backdrop-blur-sm shadow-3xl">
-                  <IconComponent className="h-16 w-16 text-aurum-400" />
+                <div className="p-6 rounded-full border border-aurum-500/50 bg-aurum-500/10 backdrop-blur-sm shadow-3xl transition-all duration-300 hover:scale-110 hover:rotate-6 hover:bg-aurum-500/20 cursor-pointer">
+                  <IconComponent className="h-16 w-16 text-aurum-400 transition-transform duration-300 group-hover:scale-110" />
                 </div>
               </div>
 
@@ -111,10 +111,10 @@ const HeroCarousel = () => {
                 {currentSlideData.features.map((feature, index) => (
                   <div
                     key={index}
-                    className="inline-flex items-center px-6 py-3 bg-white/10 backdrop-blur-sm rounded-lg border border-white/20 text-white"
+                    className="inline-flex items-center px-6 py-3 bg-white/10 backdrop-blur-sm rounded-lg border border-white/20 text-white transition-all duration-300 hover:scale-110 hover:bg-white/20 hover:shadow-lg hover:-translate-y-1 cursor-pointer"
                     style={{ animationDelay: `${index * 0.1}s` }}
                   >
-                    <Star className="h-4 w-4 mr-2" />
+                    <Star className="h-4 w-4 mr-2 transition-transform duration-300 group-hover:rotate-180" />
                     <span>{feature}</span>
                   </div>
                 ))}
@@ -157,16 +157,16 @@ const HeroCarousel = () => {
       {/* Arrow Navigation */}
       <button
         onClick={prevSlide}
-        className="absolute left-4 top-1/2 transform -translate-y-1/2 p-3 bg-white/10 backdrop-blur-sm rounded-full border border-white/20 text-white hover:bg-white/20 transition-all duration-300"
+        className="absolute left-4 top-1/2 transform -translate-y-1/2 p-3 bg-white/10 backdrop-blur-sm rounded-full border border-white/20 text-white hover:bg-white/20 transition-all duration-300 hover:scale-110 hover:shadow-lg hover:-translate-x-1"
       >
-        <ChevronLeft className="h-6 w-6" />
+        <ChevronLeft className="h-6 w-6 transition-transform duration-300 group-hover:-translate-x-1" />
       </button>
 
       <button
         onClick={nextSlide}
-        className="absolute right-4 top-1/2 transform -translate-y-1/2 p-3 bg-white/10 backdrop-blur-sm rounded-full border border-white/20 text-white hover:bg-white/20 transition-all duration-300"
+        className="absolute right-4 top-1/2 transform -translate-y-1/2 p-3 bg-white/10 backdrop-blur-sm rounded-full border border-white/20 text-white hover:bg-white/20 transition-all duration-300 hover:scale-110 hover:shadow-lg hover:translate-x-1"
       >
-        <ChevronRight className="h-6 w-6" />
+        <ChevronRight className="h-6 w-6 transition-transform duration-300 group-hover:translate-x-1" />
       </button>
     </div>
   );
